@@ -1,1 +1,1 @@
-# csgo-dataviz
+[[Wiki|nalmt/dataviz/wiki]]
