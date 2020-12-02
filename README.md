@@ -1,1 +1,1 @@
-[[Wiki|nalmt/dataviz/wiki]]
+[Wiki](/nalmt/dataviz/wiki)
