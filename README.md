@@ -1,1 +1,1 @@
-[Wiki](/nalmt/dataviz/wiki)
+[Wiki](https://github.com/nalmt/dataviz/wiki)
