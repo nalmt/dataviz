@@ -5,7 +5,7 @@ Visualisation interactive de données, université Lyon 1, Master 2 Intelligence
 
 # Peer-review de document de cadrage : 
 
-Groupe auteur de la relecture : Groupe 17 - Overshoot
+Groupe auteur de la relecture : Groupe 16 - Overshoot
 
 Groupe sur lequel porte la relecture : Groupe 6
 
