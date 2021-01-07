@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+    <title>Le Covid-19 en France</title>
+    <meta charset="utf-8" />
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+    </style>
+</head>
+
+<body>
+  <div id="selectContainer">
+  </div>
+  <script>
+    // Create a div for the Input and its label
+    d3.select('#selectContainer').append('div').attr('id','selection');
+    d3.select("#selection").append('div').attr("class",'labelSelect').html("Select a Country :");
+
+    // Create the Select Input
+    var refSelect  = d3.select("#selection")
+            .append("select")
+            .attr('id','countrySelect')
+            .on("change", changeCountry);
+
+    d3.csv("datasets/nfa_2019.csv").then(function(data) {
+      var countries_brut = []
+      for (let i = 0; i < data.length; i++) {
+        countries_brut.push(data[i].country)
+      }
+
+      let uniqueCountriesSet = new Set(countries_brut)
+
+      let uniqueCountriesArray = []
+      for (let item of uniqueCountriesSet.values()) {
+        uniqueCountriesArray.push(item)
+      }
+      uniqueCountriesArray.sort()
+      
+      var refOptions = refSelect.selectAll('option')
+            .data(uniqueCountriesArray)
+            .enter()
+            .append("option")
+            .attr("selected", function(d){
+                if (d.localeCompare('World') == 0) {
+                  return true;
+                }
+            })
+            .text(function(d) { return d; });
+            
+    });
+
+    // Set the options for the Select Input
+    /*var refOptions = refSelect.selectAll('option').data(allCityObjects);
+        refOptions.enter()
+            .append("option")
+            .attr("selected", function(d){
+                // logic that returns true for the city that should initially be selected, if need-be
+            })
+            .text(function(d) { return d.cityName; });*/
+    
+    function changeCountry() {
+      // Grab currently selected option
+      var s = d3.select(this);
+      var i = s.property("selectedIndex");
+      var d = s.selectAll('option').data()[i];
+      // Call function that shows Tooltip for specific city 'd'
+    } 
+
+  </script>
+</body>
