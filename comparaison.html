@@ -12,13 +12,13 @@
   <div id="selectContainer">
   </div>
 
-  <button type="button" onclick="addToPlot()">Add to plot</button>
+  <button type="button" onclick="addCountryToPlot()">Add to plot</button>
   <br> <br>
-  <ul id="dynamic-list"></ul>
+  <ul id="countryList"></ul>
 
   <script>
     let selectedCountry = "";
-    let selectedCountries = [];
+    let selectedCountries = new Map();
     // https://stackoverflow.com/questions/32177431/d3js-map-selectable-country-list
 
     // Create a div for the Input and its label
@@ -66,36 +66,62 @@
       let i = s.property("selectedIndex");
       let d = s.selectAll('option').data()[i];
       selectedCountry = d;
+
       // console.log(d);
       // Call function that shows Tooltip for specific city 'd'
     } 
     
-    function addToPlot() {
-      console.log(selectedCountry);
-      selectedCountries.push(selectedCountry);
-      console.log(selectedCountries);
+    countryId = 0;
+    function addCountryToPlot() {
 
-      const ul = document.getElementById("dynamic-list");
-      const li = document.createElement("li");
-      li.setAttribute('id',selectedCountry);
-      li.appendChild(document.createTextNode(selectedCountry));
-      const but = document.createElement("button");
-      but.setAttribute('type', 'button');
-      but.setAttribute('onclick', 'removeCountry('+selectedCountry+')');
-      but.innerHTML = "remove"
-      li.appendChild(but);
-      ul.appendChild(li);
+      if (findInMap(selectedCountries, selectedCountry)) {
+
+      } else {
+        //console.log(selectedCountry);
+        selectedCountries.set(countryId, selectedCountry);
+        console.log(selectedCountries);
+
+        const ul = document.getElementById("countryList");
+
+        const li = document.createElement("li");
+        li.setAttribute('id','selectedCountry_'+countryId);
+        li.appendChild(document.createTextNode(selectedCountry));
+        
+        const but = document.createElement("button");
+        but.setAttribute('type', 'button');
+
+        let string = 'removeCountry(selectedCountry_'+countryId+')';
+        
+        but.setAttribute('onclick', string);
+        but.innerHTML = "remove"
+        li.appendChild(but);
+
+        ul.appendChild(li);
+
+        countryId += 1;
+      }
+      
     }
 
     function removeCountry(li) {
-      const index = selectedCountries.indexOf(li.getAttribute('id'));
-      if (index > -1) {
-        selectedCountries.splice(index, 1);
-      }
+      ind = parseInt(li.getAttribute('id').split('_')[1], 10);
+      console.log(ind);
+
+      selectedCountries.delete(ind);
 
       console.log(selectedCountries);
 
       li.parentNode.removeChild(li);
     }
+
+    const findInMap = (map, val) => {
+      for (let v of map.values()) {
+        if (v === val) { 
+          return true; 
+        }
+      }  
+      return false;
+    }
+
   </script>
 </body>
