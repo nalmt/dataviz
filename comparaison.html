@@ -8,21 +8,32 @@
 </head>
 
 <body>
+
   <div id="selectContainer">
   </div>
+
+  <button type="button" onclick="addToPlot()">Add to plot</button>
+  <br> <br>
+  <ul id="dynamic-list"></ul>
+
   <script>
+    let selectedCountry = "";
+    let selectedCountries = [];
+    // https://stackoverflow.com/questions/32177431/d3js-map-selectable-country-list
+
     // Create a div for the Input and its label
     d3.select('#selectContainer').append('div').attr('id','selection');
     d3.select("#selection").append('div').attr("class",'labelSelect').html("Select a Country :");
 
+
     // Create the Select Input
-    var refSelect  = d3.select("#selection")
+    const countrySelect  = d3.select("#selection")
             .append("select")
             .attr('id','countrySelect')
             .on("change", changeCountry);
 
     d3.csv("datasets/nfa_2019.csv").then(function(data) {
-      var countries_brut = []
+      let countries_brut = []
       for (let i = 0; i < data.length; i++) {
         countries_brut.push(data[i].country)
       }
@@ -34,36 +45,57 @@
         uniqueCountriesArray.push(item)
       }
       uniqueCountriesArray.sort()
-      
-      var refOptions = refSelect.selectAll('option')
+
+      const countryOptions = countrySelect.selectAll('option')
             .data(uniqueCountriesArray)
             .enter()
             .append("option")
             .attr("selected", function(d){
                 if (d.localeCompare('World') == 0) {
+                  selectedCountry = d;
                   return true;
                 }
             })
             .text(function(d) { return d; });
             
     });
-
-    // Set the options for the Select Input
-    /*var refOptions = refSelect.selectAll('option').data(allCityObjects);
-        refOptions.enter()
-            .append("option")
-            .attr("selected", function(d){
-                // logic that returns true for the city that should initially be selected, if need-be
-            })
-            .text(function(d) { return d.cityName; });*/
     
     function changeCountry() {
       // Grab currently selected option
-      var s = d3.select(this);
-      var i = s.property("selectedIndex");
-      var d = s.selectAll('option').data()[i];
+      let s = d3.select(this);
+      let i = s.property("selectedIndex");
+      let d = s.selectAll('option').data()[i];
+      selectedCountry = d;
+      // console.log(d);
       // Call function that shows Tooltip for specific city 'd'
     } 
+    
+    function addToPlot() {
+      console.log(selectedCountry);
+      selectedCountries.push(selectedCountry);
+      console.log(selectedCountries);
 
+      const ul = document.getElementById("dynamic-list");
+      const li = document.createElement("li");
+      li.setAttribute('id',selectedCountry);
+      li.appendChild(document.createTextNode(selectedCountry));
+      const but = document.createElement("button");
+      but.setAttribute('type', 'button');
+      but.setAttribute('onclick', 'removeCountry('+selectedCountry+')');
+      but.innerHTML = "remove"
+      li.appendChild(but);
+      ul.appendChild(li);
+    }
+
+    function removeCountry(li) {
+      const index = selectedCountries.indexOf(li.getAttribute('id'));
+      if (index > -1) {
+        selectedCountries.splice(index, 1);
+      }
+
+      console.log(selectedCountries);
+
+      li.parentNode.removeChild(li);
+    }
   </script>
 </body>
