@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>Le Covid-19 en France</title>
+    <title>Overshoot Day Comparision</title>
     <meta charset="utf-8" />
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <style>
@@ -15,10 +15,13 @@
   <button type="button" onclick="addCountryToPlot()">Add to plot</button>
   <br> <br>
   <ul id="countryList"></ul>
+  <br> <br>
+  <svg id="chart" width="850" height="410"></svg>
 
   <script>
+
     let selectedCountry = "";
-    let selectedCountries = new Map();
+    let selectedCountries = {};
     // https://stackoverflow.com/questions/32177431/d3js-map-selectable-country-list
 
     // Create a div for the Input and its label
@@ -32,6 +35,9 @@
             .attr('id','countrySelect')
             .on("change", changeCountry);
 
+
+    let dataToDisplay = new Map();
+
     d3.csv("datasets/nfa_2019.csv").then(function(data) {
       let countries_brut = []
       for (let i = 0; i < data.length; i++) {
@@ -43,7 +49,9 @@
       let uniqueCountriesArray = []
       for (let item of uniqueCountriesSet.values()) {
         uniqueCountriesArray.push(item)
+        dataToDisplay[item] = {}
       }
+
       uniqueCountriesArray.sort()
 
       const countryOptions = countrySelect.selectAll('option')
@@ -60,6 +68,7 @@
             
     });
     
+
     function changeCountry() {
       // Grab currently selected option
       let s = d3.select(this);
@@ -122,6 +131,58 @@
       }  
       return false;
     }
+
+
+    // CHART
+
+
+    d3.csv("datasets/nfa_2019.csv").then(function(data) {
+
+      let countries_brut = []
+      for (let i = 0; i < data.length; i++) {
+        countries_brut.push(data[i].country)
+      }
+
+      let uniqueCountriesSet = new Set(countries_brut)
+
+      let uniqueCountriesArray = []
+      for (let item of uniqueCountriesSet.values()) {
+        uniqueCountriesArray.push(item)
+        dataToDisplay[item] = {}
+      }
+
+      // Real data
+      let current_year = 0
+      let current_country = undefined
+      let biocap = undefined
+      let efcons = undefined
+
+      for (let i = 0; i < data.length; i++) {
+        if (current_country == undefined){
+          current_country = data[i].country
+        }
+
+        if (data[i].country == current_country) {
+          if (data[i].year > current_year) {
+            current_year = data[i].year
+          }
+        } else {
+          current_year = data[i].year
+          current_country = data[i].country
+        }
+        
+        if (data[i].year == current_year && data[i].record == "BiocapTotGHA") {
+          biocap = data[i].total
+        } else if (data[i].year == current_year && data[i].record == "EFConsTotGHA") {
+          efcons = data[i].total
+          dataToDisplay[current_country][current_year] = (biocap/efcons)*365
+        }
+
+      }
+
+      console.log(Object.keys(dataToDisplay["Morocco"]))
+
+    });
 
   </script>
 </body>
