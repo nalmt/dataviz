@@ -269,34 +269,38 @@
       
       console.log(data)
 
-
-      // Missing data
-      let noDataLength = Object.keys(data)[0] - first_year
+      //let noDataLength = Object.keys(data)[0] - first_year
 
       let ySet = []
+      
+      /*
       let i = 0
       let yearIndex = first_year
       while (i < noDataLength) {
-        ySet[i] = {"x" : yearIndex, "y": 0 }
+        ySet[i] = {"x" : yearIndex, "y": null }
         i++
         yearIndex++
       }
 
       // Available data
+      //while (j < last_year - first_year +1) {
+      */
+
       let j = 0
-      while (i < last_year - first_year +1) {
-        ySet[i] = {"x" : Object.keys(data)[j], "y": Object.values(data)[j] }
+      while (j < size) {
+
+        ySet[j] = {"x" : Object.keys(data)[j], "y": Object.values(data)[j] }
         /*
         if (Object.values(data)[j] > max_day) {
           max_day = Object.values(data)[j]
         } 
         */
-        i++
+        //i++
         j++
       }
 
       console.log(ySet)
-      let color = "hsl(" + Math.random() * 360 + ",100%,50%)"
+      let color = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6)
     
       // 9. Append the path, bind the data, and call the line generator 
       
