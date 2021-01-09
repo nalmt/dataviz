@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<head>
+    <title>Overshoot Day Comparision</title>
+    <meta charset="utf-8" />
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+      .line {
+        fill: none;
+        stroke: #ffab00;
+        stroke-width: 3;
+      }
+      
+      .overlay {
+        fill: none;
+        pointer-events: all;
+      }
+
+      /* Style the dots by assigning a fill and stroke */
+      .dot {
+        fill: #ffab00;
+        stroke: #fff;
+      }
+        
+      .focus circle {
+        fill: none;
+        stroke: steelblue;
+      }
+    </style>
+</head>
+
+<body>
+
+  <div id="selectContainer">
+  </div>
+
+  <button type="button" onclick="addCountryToList()">Add to plot</button>
+  <br> <br>
+  <ul id="countryList"></ul>
+  
+
+  <script>
+
+    let selectedCountry = "";
+    let selectedCountries = new Map();
+    // https://stackoverflow.com/questions/32177431/d3js-map-selectable-country-list
+
+    // Create a div for the Input and its label
+    d3.select('#selectContainer').append('div').attr('id','selection');
+    d3.select("#selection").append('div').attr("class",'labelSelect').html("Select a Country :");
+
+
+    // Create the Select Input
+    const countrySelect  = d3.select("#selection")
+            .append("select")
+            .attr('id','countrySelect')
+            .on("change", changeCountry);
+
+
+    let dataToDisplay = new Map();
+
+    d3.csv("datasets/nfa_2019.csv").then(function(data) {
+      let countries_brut = []
+      for (let i = 0; i < data.length; i++) {
+        countries_brut.push(data[i].country)
+      }
+
+      let uniqueCountriesSet = new Set(countries_brut)
+
+      let uniqueCountriesArray = []
+      for (let item of uniqueCountriesSet.values()) {
+        uniqueCountriesArray.push(item)
+        dataToDisplay[item] = new Map()
+      }
+
+      uniqueCountriesArray.sort()
+
+      const countryOptions = countrySelect.selectAll('option')
+            .data(uniqueCountriesArray)
+            .enter()
+            .append("option")
+            .attr("selected", function(d){
+                if (d.localeCompare('World') == 0) {
+                  selectedCountry = d;
+                  return true;
+                }
+            })
+            .text(function(d) { return d; });
+            
+    });
+    
+
+    function changeCountry() {
+      // Grab currently selected option
+      let s = d3.select(this);
+      let i = s.property("selectedIndex");
+      let d = s.selectAll('option').data()[i];
+      selectedCountry = d;
+
+      // console.log(d);
+      // Call function that shows Tooltip for specific city 'd'
+    } 
+    
+    countryId = 0;
+    function addCountryToList() {
+
+      if (findInMap(selectedCountries, selectedCountry)) {
+
+      } else {
+        // console.log(selectedCountry);
+        selectedCountries.set(countryId, selectedCountry);
+        // console.log(selectedCountries);
+
+        const ul = document.getElementById("countryList");
+
+        const li = document.createElement("li");
+        li.setAttribute('id','selectedCountry_'+countryId);
+        li.appendChild(document.createTextNode(selectedCountry));
+        
+        const but = document.createElement("button");
+        but.setAttribute('type', 'button');
+
+        let string = 'removeCountry(selectedCountry_'+countryId+')';
+        
+        but.setAttribute('onclick', string);
+        but.innerHTML = "remove"
+        li.appendChild(but);
+
+        ul.appendChild(li);
+
+        addToPlot(dataToDisplay[selectedCountry], countryId);
+
+        countryId += 1;
+      }
+      
+    }
+
+    function removeCountry(li) {
+      ind = parseInt(li.getAttribute('id').split('_')[1], 10);
+      // console.log(ind);
+
+      selectedCountries.delete(ind);
+
+      // console.log(selectedCountries);
+
+      li.parentNode.removeChild(li);
+
+    }
+
+    const findInMap = (map, val) => {
+      for (let v of map.values()) {
+        if (v === val) { 
+          return true; 
+        }
+      }  
+      return false;
+    }
+
+
+    // CHART
+
+    var margin = {top: 10, right: 50, bottom: 50, left: 50}
+      , width = window.innerWidth - margin.left - margin.right // Use the window's width 
+      , height = window.innerHeight - margin.top - margin.bottom; // Use the window's height
+
+    // The number of datapoints
+    var n = 21;
+
+    // 5. X scale will use the index of our data
+    var xScale = d3.scaleLinear()
+        .domain([0, n-1]) // input
+        .range([0, width]); // output
+
+    // 6. Y scale will use the randomly generate number 
+    var yScale = d3.scaleLinear()
+        .domain([0, 1]) // input 
+        .range([height, 0]); // output 
+
+    // 7. d3's line generator
+    var line = d3.line()
+        .x(function(d, i) { return xScale(i); }) // set the x values for the line generator
+        .y(function(d) { return yScale(d.y); }) // set the y values for the line generator 
+        .curve(d3.curveMonotoneX) // apply smoothing to the line
+
+    // 8. An array of objects of length N. Each object has key -> value pair, the key being "y" and the value is a random number
+
+    // 1. Add the SVG to the page and employ #2
+    var svg = d3.select("body").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // 3. Call the x axis in a group tag
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(xScale)); // Create an axis component with d3.axisBottom
+
+    // 4. Call the y axis in a group tag
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(d3.axisLeft(yScale)); // Create an axis component with d3.axisLeft
+
+    
+
+
+    d3.csv("datasets/nfa_2019.csv").then(function(data) {
+
+      let countries_brut = []
+      for (let i = 0; i < data.length; i++) {
+        countries_brut.push(data[i].country)
+      }
+
+      let uniqueCountriesSet = new Set(countries_brut)
+
+      let uniqueCountriesArray = []
+      for (let item of uniqueCountriesSet.values()) {
+        uniqueCountriesArray.push(item)
+        dataToDisplay[item] = new Map()
+      }
+
+      // Real data
+      let current_year = 0
+      let current_country = undefined
+      let biocap = undefined
+      let efcons = undefined
+
+      for (let i = 0; i < data.length; i++) {
+        if (current_country == undefined){
+          current_country = data[i].country
+        }
+
+        if (data[i].country == current_country) {
+          if (data[i].year > current_year) {
+            current_year = data[i].year
+          }
+        } else {
+          current_year = data[i].year
+          current_country = data[i].country
+        }
+        
+        if (data[i].year == current_year && data[i].record == "BiocapTotGHA") {
+          biocap = data[i].total
+        } else if (data[i].year == current_year && data[i].record == "EFConsTotGHA") {
+          efcons = data[i].total
+          overshootday = Math.round((biocap/efcons)*365)
+          dataToDisplay[current_country][current_year] = overshootday
+        }
+
+      }
+      // console.log(JSON.stringify(dataToDisplay, null, 4));
+
+    });
+
+
+    function addToPlot(data, ind) {
+      /*let i = 0;
+      let dataArray = [];
+
+      for (entry in data) {
+        dataArray[i] = [entry, data[entry]];
+        i++;
+      }
+      //console.log(dataArray);
+      
+      i = -1;
+      var dataset = d3.range(data.size).map(function(d) {
+        i++
+        y = dataArray[i][0]
+        x = dataArray[i][1]
+        return {y: x } 
+      })
+
+      console.log(dataset)
+      */
+      let size = 0
+      for (entry in data) {
+        //dataArray[i] = [entry, data[entry]];
+        size++;
+      }
+      console.log(size)
+
+      var dataset = d3.range(n).map(function(d) { return {"y": d3.randomUniform(1)() } })
+      console.log(dataset)
+      // 9. Append the path, bind the data, and call the line generator 
+      svg.append("path")
+          .datum(dataset) // 10. Binds data to the line 
+          .attr("class", "line") // Assign a class for styling 
+          .attr("d", line); // 11. Calls the line generator 
+
+      // 12. Appends a circle for each datapoint 
+      svg.selectAll(".dot")
+          .data(dataset)
+        .enter().append("circle") // Uses the enter().append() method
+          .attr("class", "dot") // Assign a class for styling
+          .attr("cx", function(d, i) { return xScale(i) })
+          .attr("cy", function(d) { return yScale(d.y) })
+          .attr("r", 5)
+            .on("mouseover", function(a, b, c) { 
+              console.log(a) 
+              this.attr('class', 'focus')
+          })
+            .on("mouseout", function() {  })
+    }
+
+  </script>
+</body>
