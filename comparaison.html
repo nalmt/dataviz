@@ -110,8 +110,8 @@
         .range([0, width]); // output
 
     // 6. Y scale will use the randomly generate number 
-    let yScale = d3.scaleLinear()
-        .domain([0, 365]) // input 
+    let yScale = d3.scaleSqrt()
+        .domain([0, 2500]) // input 
         .range([height, 0]); // output 
 
     // 7. d3's line generator
@@ -244,6 +244,10 @@
 
       li.parentNode.removeChild(li);
 
+      // deleting graph and dots
+      const graph = document.getElementById("path"+ind);
+      graph.parentNode.removeChild(graph);
+      svg.selectAll('.dot'+ind).remove()
     }
 
     const findInMap = (map, val) => {
@@ -282,14 +286,14 @@
       let j = 0
       while (i < last_year - first_year +1) {
         ySet[i] = {"x" : Object.keys(data)[j], "y": Object.values(data)[j] }
+        /*
         if (Object.values(data)[j] > max_day) {
           max_day = Object.values(data)[j]
-        }
+        } 
+        */
         i++
         j++
       }
-      // Rescaling
-      rescale()
 
       console.log(ySet)
       let color = "hsl(" + Math.random() * 360 + ",100%,50%)"
@@ -299,6 +303,7 @@
       svg.append("path")
           .datum(ySet) // 10. Binds data to the line 
           .attr("class", "line") // Assign a class for styling 
+          .attr("id", "path"+ind)
           .attr("d", line)
           .style("stroke", color)
 
@@ -306,6 +311,7 @@
       dots.data(ySet)
           .enter().append("circle") // Uses the enter().append() method
           .attr("class", "dot") // Assign a class for styling
+          .attr("class", "dot"+ind)
           .attr("cx", function(d, i) { return xScale(d.x) })
           .attr("cy", function(d) { return yScale(d.y) })
           .attr("r", 5)
@@ -314,13 +320,6 @@
           });
     }
 
-    function rescale() {
-      /*console.log(max_day)
-      let yScale = d3.scaleLinear()
-        .domain([0, max_day]) // input 
-        .range([height, 0]); // output 
-        */
-    }
 
   </script>
 </body>
