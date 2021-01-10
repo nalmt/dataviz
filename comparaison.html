@@ -55,6 +55,7 @@
 
   <script>
 
+    let countryId = 0;
     let selectedCountry = "";
     let selectedCountries = new Map();
     // https://stackoverflow.com/questions/32177431/d3js-map-selectable-country-list
@@ -72,40 +73,6 @@
 
 
     let dataToDisplay = new Map();
-
-    d3.csv("datasets/nfa_2019.csv").then(function(data) {
-      let countries_brut = []
-      for (let i = 0; i < data.length; i++) {
-        countries_brut.push(data[i].country)
-      }
-
-      let uniqueCountriesSet = new Set(countries_brut)
-
-      let uniqueCountriesArray = []
-      for (let item of uniqueCountriesSet.values()) {
-        uniqueCountriesArray.push(item)
-        dataToDisplay[item] = new Map()
-      }
-
-      uniqueCountriesArray.sort()
-
-      const countryOptions = countrySelect.selectAll('option')
-            .data(uniqueCountriesArray)
-            .enter()
-            .append("option")
-            .attr("selected", function(d){
-                if (d.localeCompare('World') == 0) {
-                  selectedCountry = d;
-                  return true;
-                }
-            })
-            .text(function(d) { return d; });
-            
-    });
-    
-
-
-
 
     // CHART
 
@@ -176,6 +143,20 @@
         dataToDisplay[item] = new Map()
       }
 
+      uniqueCountriesArray.sort()
+
+      const countryOptions = countrySelect.selectAll('option')
+            .data(uniqueCountriesArray)
+            .enter()
+            .append("option")
+            .attr("selected", function(d){
+                if (d.localeCompare('World') == 0) {
+                  selectedCountry = d;
+                  return true;
+                }
+            })
+            .text(function(d) { return d; });
+
       // Real data
       let current_year = 0
       let current_country = undefined
@@ -205,9 +186,9 @@
         }
 
       }
-      // console.log(JSON.stringify(dataToDisplay, null, 4));
-
+            
     });
+
 
     function changeCountry() {
       // Grab currently selected option
@@ -217,7 +198,6 @@
       selectedCountry = d;
     } 
     
-    countryId = 0;
     function addCountryToList() {
 
       if (findInMap(selectedCountries, selectedCountry)) {
@@ -380,13 +360,13 @@
           }
         }
         date = new Date(date.setDate(day));
-        return "++ " + format(date);
+        return "(++) " + format(date);
       }
       
     }
 
     // https://www.w3resource.com/javascript-exercises/javascript-basic-exercise-6.php#:~:text=Every%20year%20that%20is%20exactly,but%20the%20year%202000%20is.
-    function leapyear(year){
+    function leapyear(year) {
       return (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
     }
 
