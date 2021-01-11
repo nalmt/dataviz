@@ -4,6 +4,17 @@
     <meta charset="utf-8" />
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <style>
+
+      #selectContainer {
+        font-family: sans-serif;
+        font-size: 22px;
+      }
+
+      li, #countrySelect, #addButton {
+        font-family: sans-serif;
+        font-size: 16px;
+      }
+
       .line {
         fill: none;
         stroke: #ffab00;
@@ -44,7 +55,6 @@
         font-family: sans-serif;
         font-size: 16px;
         font-weight: bold;
-        text-anchor: middle;
       }
 
     </style>
@@ -55,7 +65,7 @@
   <div id="selectContainer">
   </div>
 
-  <button type="button" onclick="addCountryToList()">Add to plot</button>
+  <button id="addButton" type="button" onclick="addCountryToList()">Add to plot</button>
   <br> <br>
   <ul id="countryList"></ul>
   
@@ -70,7 +80,7 @@
 
     // Create a div for the Input and its label
     d3.select('#selectContainer').append('div').attr('id','selection');
-    d3.select("#selection").append('div').attr("class",'labelSelect').html("Select a Country :");
+    d3.select("#selection").append('div').attr("class",'labelSelect').html("Select a Country : (will be added to the plot and to the legend below)");
 
 
     // Create the Select Input
@@ -118,12 +128,22 @@
     const svg = d3.select("body").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
-      .append("g")
+        .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     const dots = svg.selectAll(".dot")
 
     const legends = svg.selectAll(".legend")
+
+    // title
+    svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 25 - (margin.top / 2))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "40px") 
+        .style("text-decoration", "underline") 
+        .style("font-family", "sans-serif")  
+        .text("Past Overshoot Days per Country");
 
     // 3. Call the x axis in a group tag
     svg.append("g")
@@ -224,7 +244,6 @@
 
         const li = document.createElement("li");
         li.setAttribute('id','selectedCountry_'+countryId);
-        li.appendChild(document.createTextNode(selectedCountry));
         
         const but = document.createElement("button");
         but.setAttribute('type', 'button');
@@ -234,6 +253,9 @@
         but.setAttribute('onclick', string);
         but.innerHTML = "remove"
         li.appendChild(but);
+
+
+        li.appendChild(document.createTextNode(" | "+selectedCountry));
 
         ul.appendChild(li);
 
@@ -379,15 +401,13 @@
             .attr('height', 20)
             .attr('x', (legendSpace/2) + legendOffset)
             .attr('y', height + (margin.bottom/2)+ 5)
-            .attr("class", "legend")
-            .attr("class", "legend"+ind) 
+            .attr("class", "legend legend"+ind) 
             .style('fill', color)
             .style('stroke', 'black');
         svg.append("text")
             .attr("x", 68 + (legendSpace/2) + legendOffset)  // space legend
             .attr("y", 15+height + (margin.bottom/2)+ 5)
-            .attr("class", "legendT")
-            .attr("class", "legendT"+ind)    // style the legend
+            .attr("class", "legendT legendT"+ind)    // style the legend
             .text(resize(countryName));
         legendOffset = legendOffset +  (legendSpace*2)      
     }
