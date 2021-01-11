@@ -27,17 +27,24 @@
       }
 
       .tooltip {
-          position: absolute;
-          text-align: left; 
-          font-size: 15px;
-          width:  auto;
-          height: auto;
-          pointer-events: none;
-          padding: 2px;       
-          font: 20px sans-serif;    
-          background: #f0f0f0; 
-          border: 0px;    
-          border-radius: 8px; 
+        position: absolute;
+        text-align: left; 
+        font-size: 15px;
+        width:  auto;
+        height: auto;
+        pointer-events: none;
+        padding: 2px;       
+        font: 20px sans-serif;    
+        background: #f0f0f0; 
+        border: 0px;    
+        border-radius: 8px; 
+      }
+
+      .legendT {
+        font-family: sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        text-anchor: middle;
       }
 
     </style>
@@ -56,6 +63,7 @@
   <script>
 
     let countryId = 0;
+    let countryIds = []
     let selectedCountry = "";
     let selectedCountries = new Map();
     // https://stackoverflow.com/questions/32177431/d3js-map-selectable-country-list
@@ -80,6 +88,8 @@
       , width = window.innerWidth - margin.left - margin.right // Use the window's width 
       , height = window.innerHeight - margin.top - margin.bottom; // Use the window's height
 
+    const legendSpace = width/10
+    let legendOffset = 0
     // The number of datapoints
     
 
@@ -112,6 +122,9 @@
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     const dots = svg.selectAll(".dot")
+
+    const legends = svg.selectAll(".legend")
+
     // 3. Call the x axis in a group tag
     svg.append("g")
         .attr("class", ".xaxis")
@@ -226,6 +239,7 @@
 
         addToPlot(dataToDisplay[selectedCountry], countryId, selectedCountry);
 
+        countryIds.push(countryId)
         countryId += 1;
       }
       
@@ -245,6 +259,31 @@
       const graph = document.getElementById("path"+ind);
       graph.parentNode.removeChild(graph);
       svg.selectAll('.dot'+ind).remove()
+
+      // adjusting other legends
+      let i = 0
+      while (i < countryId) {
+        if (i > ind && countryIds.includes(i)) {
+          console.log(svg.selectAll('.legend'+i))
+          if (svg.selectAll('.legend'+i) != null && svg.selectAll('.legendT'+i) != null) {
+            const x = svg.selectAll('.legend'+i).attr('x')
+            const xT = svg.selectAll('.legendT'+i).attr('x')
+            svg.selectAll('.legend'+i).attr('x', x - (legendSpace*2))
+            svg.selectAll('.legendT'+i).attr('x', xT - (legendSpace*2))
+          }
+        }
+        i++;
+      }
+      legendOffset = legendOffset -  (legendSpace*2)
+
+      // deleting legend
+      svg.selectAll('.legend'+ind).remove()
+      svg.selectAll('.legendT'+ind).remove() 
+
+      const index = countryIds.indexOf(ind);
+      if (index > -1) {
+        countryIds.splice(index, 1);
+      }
     }
 
     const findInMap = (map, val) => {
@@ -333,8 +372,33 @@
                 .duration(200)    
                 .style("opacity", 0);
           });
+
+      // Legend
+        svg.append('rect')
+            .attr('width', 60)
+            .attr('height', 20)
+            .attr('x', (legendSpace/2) + legendOffset)
+            .attr('y', height + (margin.bottom/2)+ 5)
+            .attr("class", "legend")
+            .attr("class", "legend"+ind) 
+            .style('fill', color)
+            .style('stroke', 'black');
+        svg.append("text")
+            .attr("x", 68 + (legendSpace/2) + legendOffset)  // space legend
+            .attr("y", 15+height + (margin.bottom/2)+ 5)
+            .attr("class", "legendT")
+            .attr("class", "legendT"+ind)    // style the legend
+            .text(resize(countryName));
+        legendOffset = legendOffset +  (legendSpace*2)      
     }
 
+    function resize(name) {
+      if (name.length <= 12) {
+        return name
+      } else {
+        return name.substring(0,10)+'.'
+      }
+    }
     // https://stackoverflow.com/questions/4048688/how-can-i-convert-day-of-year-to-date-in-javascript
     function dateFromDay(year, day) {
       // https://stackoverflow.com/questions/3552461/how-to-format-a-javascript-date/47437070
