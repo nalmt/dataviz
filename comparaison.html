@@ -74,10 +74,18 @@
 
     let countryId = 0;
     let countryIds = []
+
     let selectedCountry = "";
     let selectedCountries = new Map();
-    // https://stackoverflow.com/questions/32177431/d3js-map-selectable-country-list
 
+    let legendOffset = 0
+
+    let max_day = 365
+    const first_year = 1961
+    const last_year = 2016
+
+    
+    // https://stackoverflow.com/questions/32177431/d3js-map-selectable-country-list
     // Create a div for the Input and its label
     d3.select('#selectContainer').append('div').attr('id','selection');
     d3.select("#selection").append('div').attr("class",'labelSelect').html("Select a Country : (will be added to the plot and to the legend below)");
@@ -99,13 +107,7 @@
       , height = window.innerHeight - margin.top - margin.bottom; // Use the window's height
 
     const legendSpace = width/10
-    let legendOffset = 0
-    // The number of datapoints
-    
 
-    let max_day = 365
-    const first_year = 1961
-    const last_year = 2016
     // 5. X scale will use the index of our data
     const xScale = d3.scaleLinear()
         .domain([first_year, last_year]) // input
@@ -153,21 +155,24 @@
     svg.append("g")
         .attr("class", ".xaxis")
         .attr("transform", "translate(0," + height + ")")
+        .style("font", "18px sans-serif")
         .call(d3.axisBottom(xScale).tickFormat(d3.format("d"))); // Create an axis component with d3.axisBottom
 
     // 4. Call the y axis in a group tag
     svg.append("g")
         .attr("class", ".yaxis")
+        .style("font", "15px sans-serif")
         .call(d3.axisLeft(yScale).tickFormat(d3.format("d"))); // Create an axis component with d3.axisLeft
 
     // 1 year line
     let data365 = []
-    data365[0] = {"x" : 1961, "y": 365 }
-    data365[1] = {"x" : 2016, "y": 365 }
+    data365[0] = {"x" : first_year, "y": max_day }
+    data365[1] = {"x" : last_year, "y": max_day }
     svg.append("path")
         .datum(data365) // 10. Binds data to the line 
         .attr("class", "line") // Assign a class for styling 
         .attr("d", line)
+        .style("stroke-dasharray", ("25, 5"))
         .style("stroke", "#FF0000")
         .style("opacity", "0.4")
 
