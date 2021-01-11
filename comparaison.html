@@ -72,6 +72,8 @@
 
   <script>
 
+    /* ----------------------------------------- GLOBAL VARIABLES ----------------------------------------- */
+
     let countryId = 0;
     let countryIds = []
 
@@ -84,12 +86,15 @@
     const first_year = 1961
     const last_year = 2016
 
-    
+    let dataToDisplay = new Map();
+
+
+    /* ----------------------------------------- D3 PARAMETERS, PLACE HOLDERS AND GENERATORS ----------------------------------------- */
+
     // https://stackoverflow.com/questions/32177431/d3js-map-selectable-country-list
     // Create a div for the Input and its label
     d3.select('#selectContainer').append('div').attr('id','selection');
     d3.select("#selection").append('div').attr("class",'labelSelect').html("Select a Country : (will be added to the plot and to the legend below)");
-
 
     // Create the Select Input
     const countrySelect  = d3.select("#selection")
@@ -98,35 +103,32 @@
             .on("change", changeCountry);
 
 
-    let dataToDisplay = new Map();
-
-    // CHART
-
+    // Dimension parameters
     const margin = {top: 10, right: 50, bottom: 50, left: 50}
       , width = window.innerWidth - margin.left - margin.right // Use the window's width 
       , height = window.innerHeight - margin.top - margin.bottom; // Use the window's height
 
     const legendSpace = width/10
 
-    // 5. X scale will use the index of our data
+
+    // Scaling for xAxis and yAxis
     const xScale = d3.scaleLinear()
         .domain([first_year, last_year]) // input
         .range([0, width]); // output
 
-    // 6. Y scale will use the randomly generate number 
-    let yScale = d3.scaleSqrt()
+    const yScale = d3.scaleSqrt()
         .domain([0, 2500]) // input 
         .range([height, 0]); // output 
 
-    // 7. d3's line generator
+
+    // Line generator
     const line = d3.line()
         .x(function(d, i) { return xScale(d.x); }) // set the x values for the line generator
         .y(function(d) { {return yScale(d.y);}  }) // set the y values for the line generator 
         .curve(d3.curveMonotoneX) // apply smoothing to the line
 
-    // 8. An array of objects of length N. Each object has key -> value pair, the key being "y" and the value is a random number
 
-    // 1. Add the SVG to the page and employ #2
+    // SVG, dots, tooltips and legends holders
     const svg = d3.select("body").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -141,7 +143,8 @@
                   .attr("class", "tooltip")
                   .style("opacity", 0);
 
-    // title
+
+    // Plot Title
     svg.append("text")
         .attr("x", (width / 2))             
         .attr("y", 25 - (margin.top / 2))
@@ -150,21 +153,29 @@
         .style("text-decoration", "underline") 
         .style("font-family", "sans-serif")  
         .text("Past Overshoot Days per Country");
+    svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 55 - (margin.top / 2))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "20px") 
+        .style("text-decoration", "none") 
+        .style("font-family", "sans-serif")  
+        .text("(Biocapacity / Ecological Footprint) x 365");
 
-    // 3. Call the x axis in a group tag
+
+    // xAxis and yAxis
     svg.append("g")
         .attr("class", ".xaxis")
         .attr("transform", "translate(0," + height + ")")
         .style("font", "18px sans-serif")
-        .call(d3.axisBottom(xScale).tickFormat(d3.format("d"))); // Create an axis component with d3.axisBottom
+        .call(d3.axisBottom(xScale).tickFormat(d3.format("d")));
 
-    // 4. Call the y axis in a group tag
     svg.append("g")
         .attr("class", ".yaxis")
         .style("font", "15px sans-serif")
-        .call(d3.axisLeft(yScale).tickFormat(d3.format("d"))); // Create an axis component with d3.axisLeft
+        .call(d3.axisLeft(yScale).tickFormat(d3.format("d")));
 
-    // 1 year line
+    // 1 year marker -> dashed line
     let data365 = []
     data365[0] = {"x" : first_year, "y": max_day }
     data365[1] = {"x" : last_year, "y": max_day }
@@ -177,8 +188,10 @@
         .style("opacity", "0.4")
 
 
-    d3.csv("datasets/nfa_2019.csv").then(function(data) {
+    /* ----------------------------------------- D3 DATA PROMISE ----------------------------------------- */
 
+    d3.csv("datasets/nfa_2019.csv").then(function(data) {
+      // Countries option list build
       let countries_brut = []
       for (let i = 0; i < data.length; i++) {
         countries_brut.push(data[i].country)
@@ -206,7 +219,9 @@
             })
             .text(function(d) { return d; });
 
-      // Real data
+
+
+      // Buiilding useful Data, Overshoot day formula : OD = ( BiocapTotGHA / EFConsTotGHA ) * 365
       let current_year = 0
       let current_country = undefined
       let biocap = undefined
@@ -233,11 +248,13 @@
           overshootday = Math.round((biocap/efcons)*365)
           dataToDisplay[current_country][current_year] = overshootday
         }
-
       }
             
     });
 
+    
+
+    /* ----------------------------------------- MAIN PLOTTING FUNCTIONS ----------------------------------------- */
 
     function changeCountry() {
       // Grab currently selected option
@@ -256,6 +273,7 @@
         selectedCountries.set(countryId, selectedCountry);
         // console.log(selectedCountries);
 
+        // Add the country to the selected countries
         const ul = document.getElementById("countryList");
 
         const li = document.createElement("li");
@@ -275,6 +293,7 @@
 
         ul.appendChild(li);
 
+        // Then add the country to the plot using its data
         addToPlot(dataToDisplay[selectedCountry], countryId, selectedCountry);
 
         countryIds.push(countryId)
@@ -286,23 +305,21 @@
     function removeCountry(li) {
       ind = parseInt(li.getAttribute('id').split('_')[1], 10);
       // console.log(ind);
-
       selectedCountries.delete(ind);
-
       // console.log(selectedCountries);
 
+      // Removing li element from list
       li.parentNode.removeChild(li);
 
-      // deleting graph and dots
+      // Deleting corresponding graph and dots
       const graph = document.getElementById("path"+ind);
       graph.parentNode.removeChild(graph);
       svg.selectAll('.dot'+ind).remove()
 
-      // adjusting other legends
+      // Adjusting other legends
       let i = 0
       while (i < countryId) {
         if (i > ind && countryIds.includes(i)) {
-          console.log(svg.selectAll('.legend'+i))
           if (svg.selectAll('.legend'+i) != null && svg.selectAll('.legendT'+i) != null) {
             const x = svg.selectAll('.legend'+i).attr('x')
             const xT = svg.selectAll('.legendT'+i).attr('x')
@@ -314,7 +331,7 @@
       }
       legendOffset = legendOffset -  (legendSpace*2)
 
-      // deleting legend
+      // Deleting this country's legend
       svg.selectAll('.legend'+ind).remove()
       svg.selectAll('.legendT'+ind).remove() 
 
@@ -322,17 +339,8 @@
       if (index > -1) {
         countryIds.splice(index, 1);
       }
-    }
 
-    const findInMap = (map, val) => {
-      for (let v of map.values()) {
-        if (v === val) { 
-          return true; 
-        }
-      }  
-      return false;
     }
-
 
     function addToPlot(data, ind, countryName) {
       
@@ -341,43 +349,22 @@
         size++;
       }
       
-      console.log(data)
+      // console.log(data)
 
-      //let noDataLength = Object.keys(data)[0] - first_year
-
+      // Collecting the country's data
       let ySet = []
-      
-      /*
-      let i = 0
-      let yearIndex = first_year
-      while (i < noDataLength) {
-        ySet[i] = {"x" : yearIndex, "y": null }
-        i++
-        yearIndex++
-      }
-
-      // Available data
-      //while (j < last_year - first_year +1) {
-      */
-
       let j = 0
       while (j < size) {
-
         ySet[j] = {"x" : Object.keys(data)[j], "y": Object.values(data)[j] }
-        /*
-        if (Object.values(data)[j] > max_day) {
-          max_day = Object.values(data)[j]
-        } 
-        */
-        //i++
         j++
       }
 
-      console.log(ySet)
-      let color = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6)
-    
-      // 9. Append the path, bind the data, and call the line generator 
+      //console.log(ySet)
       
+      // Random color selector (might have to change this later)
+      const color = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6)
+    
+      // Building path and using line generator 
       svg.append("path")
           .datum(ySet) // 10. Binds data to the line 
           .attr("class", "line") // Assign a class for styling 
@@ -385,7 +372,7 @@
           .attr("d", line)
           .style("stroke", color)
 
-      // 12. Appends a circle for each datapoint 
+      // Appending a circle for each data point with tooltips using tooltip holder
       dots.data(ySet)
           .enter().append("circle") // Uses the enter().append() method
           .attr("class", "dot") // Assign a class for styling
@@ -397,7 +384,7 @@
             return color;
           })
           .on("mousemove", function(a, b) {
-            let html  = "<span style='color:" + color + ";'>" + countryName + "</span><br/>" +
+            const html  = "<span style='color:" + color + ";'>" + countryName + "</span><br/>" +
                         "<span style='color:" + color + ";'> Year : " + b.x + "</span><br/>" +
                         "<b style='color:" + color + ";'> Estimated OvDay : " + dateFromDay(b.x, b.y) + "</b>";
             tooltip.html(html)
@@ -411,7 +398,7 @@
                 .style("opacity", 0);
           });
 
-      // Legend
+      // Appending a rectangle and label legend below the plot
         svg.append('rect')
             .attr('width', 60)
             .attr('height', 20)
@@ -421,11 +408,24 @@
             .style('fill', color)
             .style('stroke', 'black');
         svg.append("text")
-            .attr("x", 68 + (legendSpace/2) + legendOffset)  // space legend
+            .attr("x", 68 + (legendSpace/2) + legendOffset)
             .attr("y", 15+height + (margin.bottom/2)+ 5)
-            .attr("class", "legendT legendT"+ind)    // style the legend
+            .attr("class", "legendT legendT"+ind)
             .text(resize(countryName));
         legendOffset = legendOffset +  (legendSpace*2)      
+    }
+
+
+
+    /* ----------------------------------------- OTHER UTILITY FUNCTIONS ----------------------------------------- */
+
+    const findInMap = (map, val) => {
+      for (let v of map.values()) {
+        if (v === val) { 
+          return true; 
+        }
+      }  
+      return false;
     }
 
     function resize(name) {
@@ -435,6 +435,7 @@
         return name.substring(0,10)+'.'
       }
     }
+
     // https://stackoverflow.com/questions/4048688/how-can-i-convert-day-of-year-to-date-in-javascript
     function dateFromDay(year, day) {
       // https://stackoverflow.com/questions/3552461/how-to-format-a-javascript-date/47437070
