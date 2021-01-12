@@ -58,8 +58,3 @@ La carte des causes avec timeline semble avoir pour objectif de présenter énor
 - Une section additionnelle contenant un formulaire consacré à collecter des données spécifiques de l’utilisateur et lui donner en retour son propre impact sur le phénomène de déforestation.
 - Les chiffres donnés en introduction (hectares perdus) pour le monde entier et pas uniquement les tropiques et sur différentes années.
 - Au moins une visualisation avec une séparation entre les différents types de forêts.
-
-
-
-
-FIN.
