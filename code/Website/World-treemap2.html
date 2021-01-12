@@ -90,6 +90,9 @@
               padding: 0px;
               font-size: 10px !important;
           }
+
+
+
       </style>
     
     <script type="application/ld+json">{
@@ -148,12 +151,23 @@
                 </div>
               </div>
               <div class="u-align-left u-black u-container-style u-layout-cell u-right-cell u-size-46 u-size-xs-60 u-layout-cell-2">
-                <div class="u-container-layout u-container-layout-2">
+                <div class="u-container-layout u-container-layout-2" style="display: inline-block">
+                    <ul class="u-nav u-spacing-30 u-unstyled u-nav-1">
+                        <li class="u-nav-item">
+                            <select id="selectParam" onchange="changeParamFunction()"  class="u-btn u-btn-round u-button-style u-hover-palette-1-light-2 u-palette-1-light-3 u-radius-50 u-btn-2">
+                                <option value="Biocapacity">Biocapacity</option>
+                                <option value="Ecologicial footprint">Ecologicial footprint</option>
+                            </select>
 
-                    <select id="selectParam" onchange="changeParamFunction()"  class="u-btn u-btn-round u-button-style u-hover-palette-1-light-2 u-palette-1-light-3 u-radius-50 u-btn-2">
-                        <option value="Biocapacity">Biocapacity</option>
-                        <option value="Ecologicial footprint">Ecologicial footprint</option>
-                    </select>
+                        </li>
+                        <li class="u-nav-item">
+                            <select id="selectYear" onchange="changeYearFunction()"  class="u-btn u-btn-round u-button-style u-hover-palette-1-light-2 u-palette-1-light-3 u-radius-50 u-btn-2">
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                            </select>
+
+                        </li>
+                    </ul>
                     <p id="chart"></p>
                 </div>
               </div>
@@ -414,5 +428,16 @@
         <p class="u-small-text u-text u-text-variant u-text-1"> This website was implemented during a school project on the subject of data visualisation.<br>
         </p>
       </div></footer>
+    <section class="u-backlink u-clearfix u-grey-80">
+      <a class="u-link" href="https://nicepage.com/landing-page" target="_blank">
+        <span>Landing Page</span>
+      </a>
+      <p class="u-text">
+        <span>created with</span>
+      </p>
+      <a class="u-link" href="https://nicepage.com/website-builder" target="_blank">
+        <span>Best Website Builder</span>
+      </a>. 
+    </section>
   </body>
 </html>
