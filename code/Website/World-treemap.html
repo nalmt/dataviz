@@ -170,7 +170,7 @@
 
 
 
-      var loadeddata = "data/WorldEF2016.json";
+      var loadeddata = "datasets/WorldEF2016.json";
       var el_id = "chart";
       var obj = document.getElementById(el_id);
       var divWidth = obj.offsetWidth;
@@ -403,12 +403,12 @@
   <script>
       function changeParamFunction() {
           var x = document.getElementById("selectParam").value;
-          if (x=="Biocapacity") drawTreemap("data/Worldbiocap2016.json");
-          if (x=="Ecologicial footprint") drawTreemap("data/WorldEF2016.json");
+          if (x=="Biocapacity") drawTreemap("datasets/Worldbiocap2016.json");
+          if (x=="Ecologicial footprint") drawTreemap("datasets/WorldEF2016.json");
       }
   </script>
   <script type="text/javascript">
-      drawTreemap("data/WorldEF2016.json");
+      drawTreemap("datasets/Worldbiocap2016.json");
   </script>
   <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-0bea"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1"> This website was implemented during a school project on the subject of data visualisation.<br>

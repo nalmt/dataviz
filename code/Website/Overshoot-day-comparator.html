@@ -13,8 +13,62 @@
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 3.3.3, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
-    
-    
+      <script src="https://d3js.org/d3.v6.min.js"></script>
+      <style>
+
+          #selectContainer {
+              font-family: sans-serif;
+              font-size: 22px;
+          }
+
+          li, #countrySelect, #addButton {
+              font-family: sans-serif;
+              font-size: 16px;
+          }
+
+          .line {
+              fill: none;
+              stroke: #ffab00;
+              stroke-width: 3;
+          }
+
+          .overlay {
+              fill: none;
+              pointer-events: all;
+          }
+
+          /* Style the dots by assigning a fill and stroke */
+          .dot {
+              fill: #ffab00;
+              stroke: #fff;
+          }
+
+          .focus circle {
+              fill: none;
+              stroke: steelblue;
+          }
+
+          .tooltip {
+              position: absolute;
+              text-align: left;
+              font-size: 15px;
+              width:  auto;
+              height: auto;
+              pointer-events: none;
+              padding: 2px;
+              font: 20px sans-serif;
+              background: #f0f0f0;
+              border: 0px;
+              border-radius: 8px;
+          }
+
+          .legendT {
+              font-family: sans-serif;
+              font-size: 16px;
+              font-weight: bold;
+          }
+
+      </style>
     
     
     <script type="application/ld+json">{
@@ -62,20 +116,28 @@
           <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
         </div>
       </nav><div class="u-border-1 u-border-grey-75 u-expanded-width u-line u-line-horizontal u-line-1"></div></header>
-    <section class="u-clearfix u-section-1" id="sec-4f5e">
-      <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
+  <section class="u-clearfix u-image u-section-e" id="sec-510c" data-image-width="680" data-image-height="389"></section>
+
+  <section class="u-clearfix u-section-1" id="sec-4f5e">
+
+        <div class="u-clearfix u-sheet u-sheet-1">
+
+            <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
           <div class="u-layout">
             <div class="u-layout-row">
-              <div class="u-container-style u-image u-layout-cell u-size-22 u-image-1">
-                <div class="u-container-layout u-container-layout-1"></div>
-              </div>
+
               <div class="u-container-style u-layout-cell u-size-38 u-layout-cell-2">
                 <div class="u-container-layout u-container-layout-2">
-                  <a href="#" class="u-btn u-btn-round u-button-style u-hover-palette-1-light-2 u-palette-1-light-3 u-radius-50 u-btn-1">Choose a country...&nbsp; &nbsp;&nbsp;<span class="u-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 30.727 30.727" x="0px" y="0px" style="width: 1em; height: 1em;"><path d="M29.994,10.183L15.363,24.812L0.733,10.184c-0.977-0.978-0.977-2.561,0-3.536c0.977-0.977,2.559-0.976,3.536,0   l11.095,11.093L26.461,6.647c0.977-0.976,2.559-0.976,3.535,0C30.971,7.624,30.971,9.206,29.994,10.183z"></path></svg><img></span>
-                  </a>
-                  <div class="u-border-3 u-border-black u-container-style u-group u-white u-group-1">
-                    <div class="u-container-layout u-container-layout-3"></div>
+
+                    <div id="selectContainer">
+                    </div>
+
+                    <button id="addButton" type="button"  style="margin: 25px" onclick="addCountryToList()" class="u-btn u-btn-round u-button-style u-hover-palette-1-light-2 u-palette-1-light-3 u-radius-50 u-btn-1">Add to plot</button>
+                    <br> <br>
+                    <ul id="countryList"></ul>
+
+                  <div class="u-border-3 u-border-black u-container-style u-group u-white u-group-1" style="width: 1200px;height: 680px">
+                    <div class="u-container-layout u-container-layout-3" id="viz"></div>
                   </div>
                 </div>
               </div>
@@ -93,6 +155,439 @@
     <section class="u-clearfix u-section-3" id="sec-bdcb">
       <div class="u-clearfix u-sheet u-sheet-1"></div>
     </section>
+  <script>
+
+      /* ----------------------------------------- GLOBAL VARIABLES ----------------------------------------- */
+
+      let countryId = 0;
+      let countryIds = []
+
+      let selectedCountry = "";
+      let selectedCountries = new Map();
+
+      let legendOffset = 0
+
+      let max_day = 365
+      let max_input = 900
+      const first_year = 1961
+      const last_year = 2016
+
+      let dataToDisplay = new Map();
+
+
+      /* ----------------------------------------- D3 PARAMETERS, PLACE HOLDERS AND GENERATORS ----------------------------------------- */
+
+      // https://stackoverflow.com/questions/32177431/d3js-map-selectable-country-list
+      // Create a div for the Input and its label
+      d3.select('#selectContainer').append('div').attr('id','selection');
+      d3.select("#selection")
+          .append('div')
+          .attr("class",'u-text u-text-palette-4-dark-3 u-text-2')
+          .html("Select a Country : (will be added to the plot and to the legend below)");
+
+      // Create the Select Input
+      const countrySelect  = d3.select("#selection")
+          .append("select")
+          .attr('class','u-btn u-btn-round u-button-style u-hover-palette-1-light-2 u-palette-1-light-3 u-radius-50 u-btn-1')
+          .attr('style','margin: 25px')
+          .attr('id','countrySelect')
+          .on("change", changeCountry);
+
+
+      // Dimension parameters
+      const margin = {top: 10, right: 50, bottom: 50, left: 50}
+          , width = (window.innerWidth - margin.left - margin.right)*0.8// Use the window's width
+          , height = ( window.innerHeight - margin.top - margin.bottom)*0.8; // Use the window's height
+
+      const legendSpace = width/10
+
+
+      // Scaling for xAxis and yAxis
+      const xScale = d3.scaleLinear()
+          .domain([first_year, last_year]) // input
+          .range([0, width]); // output
+
+      const yScale = d3.scaleLinear()
+          .domain([0, max_input]) // input
+          .range([height, 0]); // output
+
+
+      // Line generator
+      const line = d3.line()
+          .x(function(d, i) { return xScale(d.x); }) // set the x values for the line generator
+          .y(function(d) { {return yScale(d.y);}  }) // set the y values for the line generator
+          .curve(d3.curveMonotoneX) // apply smoothing to the line
+
+
+      // SVG, dots, tooltips and legends holders
+      const svg = d3.select("#viz").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      const dots = svg.selectAll(".dot")
+
+      const legends = svg.selectAll(".legend")
+
+      const tooltip = d3.select('body').append('div')
+          .attr("class", "tooltip")
+          .style("opacity", 0);
+
+
+      // Plot Title
+      svg.append("text")
+          .attr("x", (width / 2))
+          .attr("y", 18 - (margin.top / 2))
+          .attr("text-anchor", "middle")
+          .style("font-size", "30px")
+          .style("text-decoration", "underline")
+          .style("font-family", "sans-serif")
+          .text("Past Overshoot Days per Country");
+      svg.append("text")
+          .attr("x", (width / 2))
+          .attr("y", 45 - (margin.top / 2))
+          .attr("text-anchor", "middle")
+          .style("font-size", "15px")
+          .style("text-decoration", "none")
+          .style("font-family", "sans-serif")
+          .text("(Biocapacity / Ecological Footprint) x 365");
+
+
+      // xAxis and yAxis
+      svg.append("g")
+          .attr("class", ".xaxis")
+          .attr("transform", "translate(0," + height + ")")
+          .style("font", "18px sans-serif")
+          .style("font-weight","bold")
+          .call(d3.axisBottom(xScale).tickFormat(d3.format("d")));
+
+      svg.append("g")
+          .attr("class", ".yaxis")
+          .style("font", "15px sans-serif")
+          .style("font-weight","bold")
+          .call(d3.axisLeft(yScale).tickFormat(d3.format("d")));
+
+      // 1 year marker -> dashed line
+      let data365 = []
+      data365[0] = {"x" : first_year, "y": max_day }
+      data365[1] = {"x" : last_year, "y": max_day }
+      svg.append("path")
+          .datum(data365) // 10. Binds data to the line
+          .attr("class", "line") // Assign a class for styling
+          .attr("d", line)
+          .style("stroke-dasharray", ("25, 5"))
+          .style("stroke", "#FF0000")
+          .style("opacity", "0.4")
+
+
+      /* ----------------------------------------- D3 DATA PROMISE ----------------------------------------- */
+
+      d3.csv("datasets/nfa_2019.csv").then(function(data) {
+          // Countries option list build
+          let countries_brut = []
+          for (let i = 0; i < data.length; i++) {
+              countries_brut.push(data[i].country)
+          }
+
+          let uniqueCountriesSet = new Set(countries_brut)
+
+          let uniqueCountriesArray = []
+          for (let item of uniqueCountriesSet.values()) {
+              uniqueCountriesArray.push(item)
+              dataToDisplay[item] = new Map()
+          }
+
+          uniqueCountriesArray.sort()
+
+          const countryOptions = countrySelect.selectAll('option')
+              .data(uniqueCountriesArray)
+              .enter()
+              .append("option")
+              .attr("selected", function(d){
+                  if (d.localeCompare('World') == 0) {
+                      selectedCountry = d;
+                      return true;
+                  }
+              })
+              .text(function(d) { return d; });
+
+
+
+          // Buiilding useful Data, Overshoot day formula : OD = ( BiocapTotGHA / EFConsTotGHA ) * 365
+          let current_year = 0
+          let current_country = undefined
+          let biocap = undefined
+          let efcons = undefined
+
+          for (let i = 0; i < data.length; i++) {
+              if (current_country == undefined){
+                  current_country = data[i].country
+              }
+
+              if (data[i].country == current_country) {
+                  if (data[i].year > current_year) {
+                      current_year = data[i].year
+                  }
+              } else {
+                  current_year = data[i].year
+                  current_country = data[i].country
+              }
+
+              if (data[i].year == current_year && data[i].record == "BiocapTotGHA") {
+                  biocap = data[i].total
+              } else if (data[i].year == current_year && data[i].record == "EFConsTotGHA") {
+                  efcons = data[i].total
+                  overshootday = Math.round((biocap/efcons)*365)
+                  dataToDisplay[current_country][current_year] = overshootday
+              }
+          }
+
+      });
+
+
+
+      /* ----------------------------------------- MAIN PLOTTING FUNCTIONS ----------------------------------------- */
+
+      function changeCountry() {
+          // Grab currently selected option
+          let s = d3.select(this);
+          let i = s.property("selectedIndex");
+          let d = s.selectAll('option').data()[i];
+          selectedCountry = d;
+      }
+
+      function addCountryToList() {
+
+          if (findInMap(selectedCountries, selectedCountry)) {
+
+          } else {
+              // console.log(selectedCountry);
+              selectedCountries.set(countryId, selectedCountry);
+              // console.log(selectedCountries);
+
+              // Add the country to the selected countries
+              const ul = document.getElementById("countryList");
+
+              const li = document.createElement("li");
+              li.setAttribute('id','selectedCountry_'+countryId);
+
+              const but = document.createElement("button");
+              but.setAttribute('type', 'button');
+
+
+              let string = 'removeCountry(selectedCountry_'+countryId+')';
+
+              but.setAttribute('onclick', string);
+              but.innerHTML = "remove"
+              li.appendChild(but);
+
+
+              li.appendChild(document.createTextNode(" | "+selectedCountry));
+
+              ul.appendChild(li);
+
+              // Then add the country to the plot using its data
+              addToPlot(dataToDisplay[selectedCountry], countryId, selectedCountry);
+
+              countryIds.push(countryId)
+              countryId += 1;
+          }
+
+      }
+
+      function removeCountry(li) {
+          ind = parseInt(li.getAttribute('id').split('_')[1], 10);
+          // console.log(ind);
+          selectedCountries.delete(ind);
+          // console.log(selectedCountries);
+
+          // Removing li element from list
+          li.parentNode.removeChild(li);
+
+          // Deleting corresponding path and dots
+          svg.selectAll('.path'+ind).remove()
+          svg.selectAll('.dot'+ind).remove()
+
+          // Adjusting other legends
+          let i = 0
+          while (i < countryId) {
+              if (i > ind && countryIds.includes(i)) {
+                  if (svg.selectAll('.legend'+i) != null && svg.selectAll('.legendT'+i) != null) {
+                      const x = svg.selectAll('.legend'+i).attr('x')
+                      const xT = svg.selectAll('.legendT'+i).attr('x')
+                      svg.selectAll('.legend'+i).attr('x', x - (legendSpace*2))
+                      svg.selectAll('.legendT'+i).attr('x', xT - (legendSpace*2))
+                  }
+              }
+              i++;
+          }
+          legendOffset = legendOffset -  (legendSpace*2)
+
+          // Deleting this country's legend
+          svg.selectAll('.legend'+ind).remove()
+          svg.selectAll('.legendT'+ind).remove()
+
+          const index = countryIds.indexOf(ind);
+          if (index > -1) {
+              countryIds.splice(index, 1);
+          }
+
+      }
+
+      function addToPlot(data, ind, countryName) {
+
+          let size = 0
+          for (entry in data) {
+              size++;
+          }
+
+          // console.log(data)
+
+          // Collecting the country's data
+          let ySet = []
+          let j = 0
+          while (j < size) {
+              ySet[j] = {"x" : Object.keys(data)[j], "y": Object.values(data)[j] }
+              j++
+          }
+
+          //console.log(ySet)
+
+          // Random color selector (might have to change this later)
+          const color = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6)
+
+          // Building path and using line generator
+          svg.append("path")
+              .datum(ySet) // 10. Binds data to the line
+              .attr("class", "line path"+ind) // Assign a class for styling
+              .attr("id", "path"+ind)
+              .attr("d", line)
+              .style("stroke", color)
+              .style("stroke-opacity", 0)
+              .transition()
+              .duration(3000)
+              .style("stroke-opacity", 1);
+
+          let transitionTimer = 50
+          // Appending a circle for each data point with tooltips using tooltip holder
+          dots.data(ySet)
+              .enter().append("circle") // Uses the enter().append() method
+              .attr("class", "dot") // Assign a class for styling
+              .attr("class", "dot"+ind)
+              .attr("cx", function(d, i) { return xScale(d.x) })
+              .attr("cy", function(d) { return yScale(d.y) })
+              .attr("r", 5)
+              .style("fill",function() {
+                  return color;
+              })
+              .on("mousemove", function(a, b) {
+                  const html  = "<span style='color:" + color + ";'>" + countryName + "</span>" +
+                      "<span style='color:" + color + ";'> Year : " + b.x + "</span>" +
+                      "<b style='color:" + color + ";'> Estimated OvDay : " + dateFromDay(b.x, b.y) + "</b>";
+                  tooltip.html(html)
+                      .attr('style', 'left:' + (a.pageX + 15) +
+                          'px; top:' + (a.pageY - 70) +
+                          'px;' + 'opacity:' + 0.9 +";");
+              })
+              .on("mouseout", function() {
+                  tooltip.transition()
+                      .duration(200)
+                      .style("opacity", 0);
+              })
+              .style("fill-opacity", 0)
+              .transition()
+              .duration(function() {
+                  transitionTimer = transitionTimer + 50
+                  return transitionTimer
+              })
+              .style("fill-opacity", 1);
+
+          // Appending a rectangle and label legend below the plot
+          svg.append('rect')
+              .attr('width', 60)
+              .attr('height', 20)
+              .attr('x', (legendSpace/2) + legendOffset)
+              .attr('y', height + (margin.bottom/2)+ 5)
+              .attr("class", "legend legend"+ind)
+              .style('fill', color)
+              .style('stroke', 'black')
+              .style("fill-opacity", 0)
+              .style("stroke-opacity", 0)
+              .transition()
+              .duration(1000)
+              .style("stroke-opacity", 1)
+              .style("fill-opacity", 1);
+          svg.append("text")
+              .attr("x", 68 + (legendSpace/2) + legendOffset)
+              .attr("y", 15+height + (margin.bottom/2)+ 5)
+              .attr("class", "legendT legendT"+ind)
+              .text(resize(countryName))
+              .style("fill-opacity", 0)
+              .transition()
+              .duration(2000)
+              .style("fill-opacity", 1);
+
+          legendOffset = legendOffset +  (legendSpace*2)
+      }
+
+
+
+      /* ----------------------------------------- OTHER UTILITY FUNCTIONS ----------------------------------------- */
+
+      const findInMap = (map, val) => {
+          for (let v of map.values()) {
+              if (v === val) {
+                  return true;
+              }
+          }
+          return false;
+      }
+
+      function resize(name) {
+          if (name.length <= 12) {
+              return name
+          } else {
+              return name.substring(0,10)+'.'
+          }
+      }
+
+      // https://stackoverflow.com/questions/4048688/how-can-i-convert-day-of-year-to-date-in-javascript
+      function dateFromDay(year, day) {
+          // https://stackoverflow.com/questions/3552461/how-to-format-a-javascript-date/47437070
+          let format= d=> d.toString().replace(/\w+ (\w+) (\d+) (\d+).*/,'$2 $1 $3');
+
+          let date = new Date(year, 0);
+          let yearLength = 365;
+          if (leapyear(year)) {
+              yearLength++;
+          }
+
+          if (day <= yearLength) {
+              date = new Date(date.setDate(day));
+              return format(date);
+          } else {
+              while (day > yearLength) {
+                  day = day - yearLength
+                  year++
+                  date = new Date(year, 0);
+                  yearLength = 365;
+                  if (leapyear(year)) {
+                      yearLength++;
+                  }
+              }
+              date = new Date(date.setDate(day));
+              return "(++) " + format(date);
+          }
+
+      }
+
+      // https://www.w3resource.com/javascript-exercises/javascript-basic-exercise-6.php#:~:text=Every%20year%20that%20is%20exactly,but%20the%20year%202000%20is.
+      function leapyear(year) {
+          return (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
+      }
+
+  </script>
     
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-0bea"><div class="u-clearfix u-sheet u-sheet-1">
