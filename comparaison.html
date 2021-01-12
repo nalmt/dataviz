@@ -83,6 +83,7 @@
     let legendOffset = 0
 
     let max_day = 365
+    let max_input = 900
     const first_year = 1961
     const last_year = 2016
 
@@ -105,8 +106,8 @@
 
     // Dimension parameters
     const margin = {top: 10, right: 50, bottom: 50, left: 50}
-      , width = window.innerWidth - margin.left - margin.right // Use the window's width 
-      , height = window.innerHeight - margin.top - margin.bottom; // Use the window's height
+      , width = (window.innerWidth - margin.left - margin.right)*0.8// Use the window's width 
+      , height = ( window.innerHeight - margin.top - margin.bottom)*0.8; // Use the window's height
 
     const legendSpace = width/10
 
@@ -116,8 +117,8 @@
         .domain([first_year, last_year]) // input
         .range([0, width]); // output
 
-    const yScale = d3.scaleSqrt()
-        .domain([0, 2500]) // input 
+    const yScale = d3.scaleLinear()
+        .domain([0, max_input]) // input 
         .range([height, 0]); // output 
 
 
@@ -147,17 +148,17 @@
     // Plot Title
     svg.append("text")
         .attr("x", (width / 2))             
-        .attr("y", 25 - (margin.top / 2))
+        .attr("y", 18 - (margin.top / 2))
         .attr("text-anchor", "middle")  
-        .style("font-size", "40px") 
+        .style("font-size", "30px") 
         .style("text-decoration", "underline") 
         .style("font-family", "sans-serif")  
         .text("Past Overshoot Days per Country");
     svg.append("text")
         .attr("x", (width / 2))             
-        .attr("y", 55 - (margin.top / 2))
+        .attr("y", 45 - (margin.top / 2))
         .attr("text-anchor", "middle")  
-        .style("font-size", "20px") 
+        .style("font-size", "15px") 
         .style("text-decoration", "none") 
         .style("font-family", "sans-serif")  
         .text("(Biocapacity / Ecological Footprint) x 365");
@@ -168,11 +169,13 @@
         .attr("class", ".xaxis")
         .attr("transform", "translate(0," + height + ")")
         .style("font", "18px sans-serif")
+        .style("font-weight","bold")
         .call(d3.axisBottom(xScale).tickFormat(d3.format("d")));
 
     svg.append("g")
         .attr("class", ".yaxis")
         .style("font", "15px sans-serif")
+        .style("font-weight","bold")
         .call(d3.axisLeft(yScale).tickFormat(d3.format("d")));
 
     // 1 year marker -> dashed line
@@ -311,9 +314,8 @@
       // Removing li element from list
       li.parentNode.removeChild(li);
 
-      // Deleting corresponding graph and dots
-      const graph = document.getElementById("path"+ind);
-      graph.parentNode.removeChild(graph);
+      // Deleting corresponding path and dots
+      svg.selectAll('.path'+ind).remove()
       svg.selectAll('.dot'+ind).remove()
 
       // Adjusting other legends
@@ -359,7 +361,7 @@
         j++
       }
 
-      //console.log(ySet)
+      console.log(ySet)
       
       // Random color selector (might have to change this later)
       const color = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6)
@@ -367,11 +369,16 @@
       // Building path and using line generator 
       svg.append("path")
           .datum(ySet) // 10. Binds data to the line 
-          .attr("class", "line") // Assign a class for styling 
+          .attr("class", "line path"+ind) // Assign a class for styling 
           .attr("id", "path"+ind)
           .attr("d", line)
           .style("stroke", color)
+          .style("stroke-opacity", 0)
+          .transition()
+          .duration(3000)
+          .style("stroke-opacity", 1);
 
+      let transitionTimer = 50
       // Appending a circle for each data point with tooltips using tooltip holder
       dots.data(ySet)
           .enter().append("circle") // Uses the enter().append() method
@@ -396,7 +403,14 @@
             tooltip.transition()    
                 .duration(200)    
                 .style("opacity", 0);
-          });
+          })
+          .style("fill-opacity", 0)
+          .transition()
+          .duration(function() {
+            transitionTimer = transitionTimer + 50
+            return transitionTimer
+          })
+          .style("fill-opacity", 1);
 
       // Appending a rectangle and label legend below the plot
         svg.append('rect')
@@ -406,12 +420,23 @@
             .attr('y', height + (margin.bottom/2)+ 5)
             .attr("class", "legend legend"+ind) 
             .style('fill', color)
-            .style('stroke', 'black');
+            .style('stroke', 'black')
+            .style("fill-opacity", 0)
+            .style("stroke-opacity", 0)
+            .transition()
+            .duration(1000)
+            .style("stroke-opacity", 1)
+            .style("fill-opacity", 1);
         svg.append("text")
             .attr("x", 68 + (legendSpace/2) + legendOffset)
             .attr("y", 15+height + (margin.bottom/2)+ 5)
             .attr("class", "legendT legendT"+ind)
-            .text(resize(countryName));
+            .text(resize(countryName))
+            .style("fill-opacity", 0)
+            .transition()
+            .duration(2000)
+            .style("fill-opacity", 1);
+
         legendOffset = legendOffset +  (legendSpace*2)      
     }
 
