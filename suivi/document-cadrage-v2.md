@@ -3,7 +3,7 @@ Emna Barred, Najib El Khadir, Antoine Poloce et Nabil Lamrabet.
 
 Visualisation interactive de données, université Lyon 1, Master 2 Intelligence Artificielle, 2020-2021
 
-# Document de cadrage : Quel est le rapport entre l'évolution de notre empreinte écologique et la biocapacité à l'échelle mondiale ? 
+# Document de cadrage (v2) : Quel est le rapport entre l'évolution de notre empreinte écologique et la biocapacité à l'échelle mondiale ? 
 
 La biocapacité d'une zone biologique représente sa capacité à produire une offre continue en ressources renouvelables et à absorber les déchets découlant de leur consommation, notamment le dioxyde de carbone.
 
@@ -51,9 +51,11 @@ On répondra différemment aux questions précédemment posées si l'impacte du 
 
 - Enfin on cible également tout individu qui souhaite s'informer sur l'empreinte écologique de son pays. Notre visualisation peut lui permettre d'estimer si l'individu moyen de son pays a une empreinte écologique/biocapacité bonne ou trop importante. Néanmoins on ne lui fournira pas un moyen de situer son empreinte écologique par rapport à l'individu moyen de son pays.
 
-## Limites de la visualisation
+## Limites et critiques du projet
 
 Une première limite réside dans la mesure utilisée, celle-ci ne prend pas en compte la délocalisation de la pollution. Il y a débat pour savoir si celle-ci doit être prise en compte et dans quelles proportions.
+
+Aussi, on peut se questionner sur la pertinence de notre mesure (empreinte écologique/biocapacité), est-ce qu'une population peut avoir une empreinte écologique élevé si elle dispose également d'une biocapacité élevée ?
 
 ## Jeux de données
 
@@ -66,22 +68,28 @@ On souhaite fusionner les codes internationaux de chaque pays du second dataset 
 
 ## Projets liés 
 
+
 - [Global Footprint Network : Earth Overshoot Day](https://www.footprintnetwork.org/our-work/earth-overshoot-day/)
 
 Nous utilisons la métrique créé par cette organisation : le jour de dépassement. Il s'agit d'une métrique mieux comprise qu'un rapport en pourcentage et donc plus impactante. 
+
+Quelques autres visualisation dont nous nous sommes inspirés :
+
+- [Ecological deficit/reserve.](https://i.ibb.co/FDthB2x/2.png)
+
+- [Ecological footprint : measure of the amount of land required to sustain a country.](http://www.viewsoftheworld.net/wp-content/uploads/2015/11/EcologicalFootprintMap.jpg)
+
 
 ## Organisation
 
 ### Moyens de communication
 
-Nous utilisons un serveur Discord pour organiser nos réunions et communiquer. Pour la communication directe, on utilise les messages privés Discord, les emails, SMS et appels téléphoniques. 
+Nous utilisons un serveur Discord pour organiser nos réunions et communiquer. Pour la communication directe, on utilise les messages privés Discord, les emails et appels téléphoniques. 
 Git & Github nous permettent de travailler collaborativement sur notre code, nos rendus et de suivre l'investissement des membres du projet. Nous travaillons totalement à distance. Chaque personne travaille en autonomie. 
 
 ## Allocation horaire du travail
 
-À partir du 10 décembre et jusqu'à la soutenance du mois de Janvier, on alloue 3 heures de travail personnel par personne et 1 heure de réunion chaque semaine. Ces chiffres sont temporaires et serons ajustés après une semaine.
-
-On ne travaille pas exactement de façon agile mais on reprend quelques concepts (on travaille sur des sprints de 1 semaine). 
+À partir du 10 décembre et jusqu'à la soutenance du mois de Janvier, on alloue 2 heures de travail personnel par personne et 1/2 heure de réunion chaque semaine. On ne travaille pas exactement de façon agile mais on reprend quelques concepts (on travaille sur des sprints de 1 semaine). 
 
 
 ### Rôles identifiés
@@ -91,31 +99,12 @@ On ne travaille pas exactement de façon agile mais on reprend quelques concepts
 - Antoine Poloce : pré-traitement des données, design, développement D3.
 - Nabil Lamrabet : suivi du projet et documentation, pré-traitement des données, développement D3.
 
-## Scan des esquisses finales
+## Esquisse finale
 
-![Esquisse Map Monde.](assets/img/Esquisses.png)
+![Esquisse finale de la visualisation interactive.](../assets/esquisse_finale.jpg)
 
-![Graphique type.](assets/img/Esquisse2.png)
+On souhaite afficher l'évolution des jours dépassés des pays. Pour cela on souhaite choisir les pays concernés et l'intervalle de temps voulu.
 
-![Formulaire EOD (Earth overshoot day) Estimator.](assets/img/Esquisse3.png)
+Pour la sélection des pays, nous voulions au départ selectionner les pays sur une carte mais cela n'est pas très pratique. Nous pouvions choisir d'utiliser une liste mais nous souhaitons avoir un peu plus d'indications avant de selectionner un pays. Nous allons donc utiliser une tree-map clicable. De ce fait on pourra naviguer dans les continents et la taille des pays sera en fonction de leur jours dépassés (plus celui-ci est grand, plus le pays est grand, on pourrait même faire l'inverse si on s'intéresse aux pays performants). En renvanche on souhaite que tous les pays soient accessibles.
 
-![Personal EOD Estimation display.](assets/img/Esquisse4.png)
-
-### Comparaison ressources consommé par pays sur ressources "allouées" au pays
-
-[Évolution impact années précedentes (PDF).](https://github.com/nalmt/dataviz/blob/main/assets/esquisses_nabil/esquisse-nabil-1.pdf)
-
-Possibilité d'afficher les années précédentes des pays et les années en prévisions (objectif : voir les pays qui font des efforts après un accord international sur le climat par exemple).
-
-[Dette des pays (PDF).](https://github.com/nalmt/dataviz/blob/main/assets/esquisses_nabil/esquisse-nabil-2-3.pdf)
-
-Première figure : affichage des "dettes" des pays (un pays est en dette s'il a consommé plus de ressources qu'il lui est permis de consommer sur une année).
-
-Deuxième figure : suivi de la consommation d'un pays à une date donnée. On affiche graphiquement la proportion consommée par rapport à la taille du pays.
-
-
-![ConsommationParCatégorie.](assets/img/ConsommationParCatégorie.png)
-![ConsommationParCatégorie (hover).](assets/img/ConsommationParCatégorie(hover).png)
-
-
-![Biocapacité/empreinte écologique par pays et pour tous les pays.](assets/img/esquisse2.png)
+On souhaite retrouver les pays selectionnés et pouvoir les retirer, au besoin, de notre affichage.
