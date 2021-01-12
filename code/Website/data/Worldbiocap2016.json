@@ -1,0 +1,2484 @@
+{
+  "key": "Biocapacity (GHA) 2016",
+  "children": [
+    {
+      "key": "Asie",
+      "children": [
+        {
+          "key": "Armenia",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 2322715.8,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1032325.75
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 46911.99
+                },
+                {
+                  "key": "forest land",
+                  "value": 279976.3
+                },
+                {
+                  "key": "grazing land",
+                  "value": 787991.3
+                },
+                {
+                  "key": "builtup land",
+                  "value": 175510.33
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Afghanistan",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 1.4795545e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 6891340
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 0
+                },
+                {
+                  "key": "forest land",
+                  "value": 605115.06
+                },
+                {
+                  "key": "grazing land",
+                  "value": 5942236.5
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1356853.5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Bahrain",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 742763,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 12187.564
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 617511.5
+                },
+                {
+                  "key": "forest land",
+                  "value": 1139.9685
+                },
+                {
+                  "key": "grazing land",
+                  "value": 0
+                },
+                {
+                  "key": "builtup land",
+                  "value": 111923.97
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Bangladesh",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 6.6264024e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 4.3917504e7
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 8379516
+                },
+                {
+                  "key": "forest land",
+                  "value": 635257.56
+                },
+                {
+                  "key": "grazing land",
+                  "value": 523005.8
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1.2808738e7
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Bhutan",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 3997499.2,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 239517.23
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 9234.644
+                },
+                {
+                  "key": "forest land",
+                  "value": 3253157.5
+                },
+                {
+                  "key": "grazing land",
+                  "value": 259814.45
+                },
+                {
+                  "key": "builtup land",
+                  "value": 235775.34
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Brunei Darussalam",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 1180850.2,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 7350.546
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 519746.12
+                },
+                {
+                  "key": "forest land",
+                  "value": 638732.56
+                },
+                {
+                  "key": "grazing land",
+                  "value": 4583.0146
+                },
+                {
+                  "key": "builtup land",
+                  "value": 10437.976
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Myanmar",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 1.00439704e8,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 5.12398e7
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 1.525149e7
+                },
+                {
+                  "key": "forest land",
+                  "value": 2.7140992e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 252940.45
+                },
+                {
+                  "key": "builtup land",
+                  "value": 6554482.5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Sri Lanka",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 1.0431868e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 6401918.5
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 1437063.8
+                },
+                {
+                  "key": "forest land",
+                  "value": 918950.1
+                },
+                {
+                  "key": "grazing land",
+                  "value": 419443.25
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1254492.1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Cyprus",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 321263.75,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": ""
+                },
+                {
+                  "key": "fishing ground",
+                  "value": ""
+                },
+                {
+                  "key": "forest land",
+                  "value": ""
+                },
+                {
+                  "key": "grazing land",
+                  "value": ""
+                },
+                {
+                  "key": "builtup land",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Azerbaijan",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 7534984.5,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 3907629.8
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 145168.6
+                },
+                {
+                  "key": "forest land",
+                  "value": 1135192.4
+                },
+                {
+                  "key": "grazing land",
+                  "value": 1822738.4
+                },
+                {
+                  "key": "builtup land",
+                  "value": 524255.62
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Georgia",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 5181300,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 591339.56
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 198933.75
+                },
+                {
+                  "key": "forest land",
+                  "value": 2601631.2
+                },
+                {
+                  "key": "grazing land",
+                  "value": 1604666.1
+                },
+                {
+                  "key": "builtup land",
+                  "value": 184729.64
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "India",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 5.6611507e8,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 4.33668352e8
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 3.6945568e7
+                },
+                {
+                  "key": "forest land",
+                  "value": 2.7791748e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 4238725.5
+                },
+                {
+                  "key": "builtup land",
+                  "value": 6.347066e7
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Indonesia",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 3.3417296e8,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1.35752032e8
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 9.5814224e7
+                },
+                {
+                  "key": "forest land",
+                  "value": 7.085216e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 1.4141929e7
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1.7612614e7
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Iran, Islamic Republic of",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 5.8661672e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 2.775975e7
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 1.5033451e7
+                },
+                {
+                  "key": "forest land",
+                  "value": 4761750.5
+                },
+                {
+                  "key": "grazing land",
+                  "value": 5488762
+                },
+                {
+                  "key": "builtup land",
+                  "value": 5617959
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Iraq",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 7900435,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 4605965.5
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 79779.87
+                },
+                {
+                  "key": "forest land",
+                  "value": 1541760.6
+                },
+                {
+                  "key": "grazing land",
+                  "value": 626123.3
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1046805.7
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Israel",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 2060549.4,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1160373.2
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 124355.38
+                },
+                {
+                  "key": "forest land",
+                  "value": 260494.4
+                },
+                {
+                  "key": "grazing land",
+                  "value": 51618.08
+                },
+                {
+                  "key": "builtup land",
+                  "value": 463708.25
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "Europe",
+      "children": [
+        {
+          "key": "Albania",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 3016530.5,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1134947.8
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 223929.17
+                },
+                {
+                  "key": "forest land",
+                  "value": 905375.1
+                },
+                {
+                  "key": "grazing land",
+                  "value": 637715.8
+                },
+                {
+                  "key": "builtup land",
+                  "value": 114562.79
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Austria",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 2.5383438e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 5767697.5
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 26464.883
+                },
+                {
+                  "key": "forest land",
+                  "value": 1.7078518e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 1235536
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1275222
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Bulgaria",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 2.3289376e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1.207534e7
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 877044.44
+                },
+                {
+                  "key": "forest land",
+                  "value": 8760587
+                },
+                {
+                  "key": "grazing land",
+                  "value": 496815.03
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1079590.4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Denmark",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 2.383376e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1.0513435e7
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 1.0236865e7
+                },
+                {
+                  "key": "forest land",
+                  "value": 1932596.4
+                },
+                {
+                  "key": "grazing land",
+                  "value": 42565.85
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1108296.9
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Belarus",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 2.8958868e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 9741613
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 170360.7
+                },
+                {
+                  "key": "forest land",
+                  "value": 1.5987082e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 2491907.8
+                },
+                {
+                  "key": "builtup land",
+                  "value": 567905.25
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Estonia",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 1.2497103e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1355324.2
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 5693219
+                },
+                {
+                  "key": "forest land",
+                  "value": 5254096
+                },
+                {
+                  "key": "grazing land",
+                  "value": 116412.18
+                },
+                {
+                  "key": "builtup land",
+                  "value": 78051.76
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Finland",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 6.950268e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 4145792.2
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 1.2697159e7
+                },
+                {
+                  "key": "forest land",
+                  "value": 5.164342e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 271659
+                },
+                {
+                  "key": "builtup land",
+                  "value": 744647.2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "France",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 1.53971136e8,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 6.6433568e7
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 7254508
+                },
+                {
+                  "key": "forest land",
+                  "value": 6.1917308e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 1.014654e7
+                },
+                {
+                  "key": "builtup land",
+                  "value": 8219211
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Germany",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 1.32533192e8,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 5.5146856e7
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 6077905
+                },
+                {
+                  "key": "forest land",
+                  "value": 5.5250608e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 5178864
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1.0878956e7
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Bosnia and Herzegovina",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 6679000,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1565141.5
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 11967.612
+                },
+                {
+                  "key": "forest land",
+                  "value": 4279711
+                },
+                {
+                  "key": "grazing land",
+                  "value": 747552.9
+                },
+                {
+                  "key": "builtup land",
+                  "value": 74627.03
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Greece",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 1.7422954e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1.1149118e7
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 1936394.9
+                },
+                {
+                  "key": "forest land",
+                  "value": 2574848.2
+                },
+                {
+                  "key": "grazing land",
+                  "value": 1031469.75
+                },
+                {
+                  "key": "builtup land",
+                  "value": 731122.6
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Hungary",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 2.406017e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1.4976532e7
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 47419.625
+                },
+                {
+                  "key": "forest land",
+                  "value": 6860071
+                },
+                {
+                  "key": "grazing land",
+                  "value": 616529.2
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1559617.4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Croatia",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 1.341312e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 3712489.8
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 1452697
+                },
+                {
+                  "key": "forest land",
+                  "value": 6583607.5
+                },
+                {
+                  "key": "grazing land",
+                  "value": 1339171.8
+                },
+                {
+                  "key": "builtup land",
+                  "value": 325154.28
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Ireland",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 15941725,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 2711247
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 6931219
+                },
+                {
+                  "key": "forest land",
+                  "value": 2340199
+                },
+                {
+                  "key": "grazing land",
+                  "value": 3495761.8
+                },
+                {
+                  "key": "builtup land",
+                  "value": 463298.16
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "Afrique",
+      "children": [
+        {
+          "key": "Algeria",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 2.1527692e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 8210214
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 322736.9
+                },
+                {
+                  "key": "forest land",
+                  "value": 1103135.2
+                },
+                {
+                  "key": "grazing land",
+                  "value": 1.0704081e7
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1187523.8
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Angola",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 5.6152712e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 6482693.5
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 5469137.5
+                },
+                {
+                  "key": "forest land",
+                  "value": 1.2938526e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 2.9924836e7
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1337520.9
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Botswana",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 6991207,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 124095.1
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 554078.6
+                },
+                {
+                  "key": "forest land",
+                  "value": 1203260.1
+                },
+                {
+                  "key": "grazing land",
+                  "value": 5051717
+                },
+                {
+                  "key": "builtup land",
+                  "value": 58056.207
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Burundi",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 4025721,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 2735429
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 79417.93
+                },
+                {
+                  "key": "forest land",
+                  "value": 96009.7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 659298.94
+                },
+                {
+                  "key": "builtup land",
+                  "value": 455565.4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Cameroon",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 3.9680588e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1.5469775e7
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 1702748.9
+                },
+                {
+                  "key": "forest land",
+                  "value": 1.8754534e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 2099441.8
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1654090.2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Cabo Verde",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 322706.25,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": ""
+                },
+                {
+                  "key": "fishing ground",
+                  "value": ""
+                },
+                {
+                  "key": "forest land",
+                  "value": ""
+                },
+                {
+                  "key": "grazing land",
+                  "value": ""
+                },
+                {
+                  "key": "builtup land",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Central African Republic",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 3.5209436e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1398514.4
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 0
+                },
+                {
+                  "key": "forest land",
+                  "value": 3.1032318e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 2606572
+                },
+                {
+                  "key": "builtup land",
+                  "value": 172032.89
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Chad",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 2.7255356e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 6299425.5
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 916076.6
+                },
+                {
+                  "key": "forest land",
+                  "value": 4600595.5
+                },
+                {
+                  "key": "grazing land",
+                  "value": 1.4488374e7
+                },
+                {
+                  "key": "builtup land",
+                  "value": 950883.94
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Comoros",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 275121.62,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": ""
+                },
+                {
+                  "key": "fishing ground",
+                  "value": ""
+                },
+                {
+                  "key": "forest land",
+                  "value": ""
+                },
+                {
+                  "key": "grazing land",
+                  "value": ""
+                },
+                {
+                  "key": "builtup land",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Congo",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 4.7110368e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 655747.6
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 1553185.4
+                },
+                {
+                  "key": "forest land",
+                  "value": 3.1262318e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 1.3464618e7
+                },
+                {
+                  "key": "builtup land",
+                  "value": 174500
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Benin",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 9703373,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 5439491.5
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 228606.23
+                },
+                {
+                  "key": "forest land",
+                  "value": 3187380
+                },
+                {
+                  "key": "grazing land",
+                  "value": 374153.2
+                },
+                {
+                  "key": "builtup land",
+                  "value": 473742.3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Egypt",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 4.3042372e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": ""
+                },
+                {
+                  "key": "fishing ground",
+                  "value": ""
+                },
+                {
+                  "key": "forest land",
+                  "value": ""
+                },
+                {
+                  "key": "grazing land",
+                  "value": ""
+                },
+                {
+                  "key": "builtup land",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Equatorial Guinea",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 3174030.2,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 103564.42
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 753434.6
+                },
+                {
+                  "key": "forest land",
+                  "value": 2180095.2
+                },
+                {
+                  "key": "grazing land",
+                  "value": 109479.586
+                },
+                {
+                  "key": "builtup land",
+                  "value": 27456.31
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Djibouti",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 678638.6,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 15628.205
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 263081.28
+                },
+                {
+                  "key": "forest land",
+                  "value": 1916.0881
+                },
+                {
+                  "key": "grazing land",
+                  "value": 203044.95
+                },
+                {
+                  "key": "builtup land",
+                  "value": 194968.11
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Gabon",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 4.382512e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 452678.53
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 4852457.5
+                },
+                {
+                  "key": "forest land",
+                  "value": 3.2496922e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 5952474
+                },
+                {
+                  "key": "builtup land",
+                  "value": 70589.95
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Gambia",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 1496839.1,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 424593.03
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 579882.94
+                },
+                {
+                  "key": "forest land",
+                  "value": 366238.25
+                },
+                {
+                  "key": "grazing land",
+                  "value": 70861.73
+                },
+                {
+                  "key": "builtup land",
+                  "value": 55263.22
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Ghana",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 3.7207216e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1.9414282e7
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 1546234.4
+                },
+                {
+                  "key": "forest land",
+                  "value": 7346299
+                },
+                {
+                  "key": "grazing land",
+                  "value": 6563760
+                },
+                {
+                  "key": "builtup land",
+                  "value": 2336640.2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Guinea",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 2.4671946e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 4731596
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 3540274.8
+                },
+                {
+                  "key": "forest land",
+                  "value": 7091052.5
+                },
+                {
+                  "key": "grazing land",
+                  "value": 8739539
+                },
+                {
+                  "key": "builtup land",
+                  "value": 569484.94
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "Amerique du Nord",
+      "children": [
+        {
+          "key": "Antigua and Barbuda",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 85209.04,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": ""
+                },
+                {
+                  "key": "fishing ground",
+                  "value": ""
+                },
+                {
+                  "key": "forest land",
+                  "value": ""
+                },
+                {
+                  "key": "grazing land",
+                  "value": ""
+                },
+                {
+                  "key": "builtup land",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Bahamas",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 3590766.2,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 19398.072
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 3119481
+                },
+                {
+                  "key": "forest land",
+                  "value": 433984.5
+                },
+                {
+                  "key": "grazing land",
+                  "value": 918.4131
+                },
+                {
+                  "key": "builtup land",
+                  "value": 16984.307
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Barbados",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 47293.06,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 15821.771
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 12502.565
+                },
+                {
+                  "key": "forest land",
+                  "value": 5308.9365
+                },
+                {
+                  "key": "grazing land",
+                  "value": 918.4131
+                },
+                {
+                  "key": "builtup land",
+                  "value": 12741.372
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Bermuda",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 8636.698,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": ""
+                },
+                {
+                  "key": "fishing ground",
+                  "value": ""
+                },
+                {
+                  "key": "forest land",
+                  "value": ""
+                },
+                {
+                  "key": "grazing land",
+                  "value": ""
+                },
+                {
+                  "key": "builtup land",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Aruba",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 59348.324,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": ""
+                },
+                {
+                  "key": "fishing ground",
+                  "value": ""
+                },
+                {
+                  "key": "forest land",
+                  "value": ""
+                },
+                {
+                  "key": "grazing land",
+                  "value": ""
+                },
+                {
+                  "key": "builtup land",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Belize",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 1387789.5,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 186083.23
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 363379.7
+                },
+                {
+                  "key": "forest land",
+                  "value": 762713.94
+                },
+                {
+                  "key": "grazing land",
+                  "value": 75409.28
+                },
+                {
+                  "key": "builtup land",
+                  "value": 203.31116
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Canada",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 5.4878861e8,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1.03013112e8
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 1.20435808e8
+                },
+                {
+                  "key": "forest land",
+                  "value": 3.1310192e8
+                },
+                {
+                  "key": "grazing land",
+                  "value": 9714209
+                },
+                {
+                  "key": "builtup land",
+                  "value": 2523558.5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Cayman Islands",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 18095.89,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": ""
+                },
+                {
+                  "key": "fishing ground",
+                  "value": ""
+                },
+                {
+                  "key": "forest land",
+                  "value": ""
+                },
+                {
+                  "key": "grazing land",
+                  "value": ""
+                },
+                {
+                  "key": "builtup land",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Costa Rica",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 7552943.5,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1976171.4
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 578302.5
+                },
+                {
+                  "key": "forest land",
+                  "value": 3122169.8
+                },
+                {
+                  "key": "grazing land",
+                  "value": 1378064.8
+                },
+                {
+                  "key": "builtup land",
+                  "value": 498235.34
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Cuba",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 9300717,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 3313366.5
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 1886459.1
+                },
+                {
+                  "key": "forest land",
+                  "value": 2734447.8
+                },
+                {
+                  "key": "grazing land",
+                  "value": 1028666.4
+                },
+                {
+                  "key": "builtup land",
+                  "value": 337777.06
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Dominica",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 77106.22,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": ""
+                },
+                {
+                  "key": "fishing ground",
+                  "value": ""
+                },
+                {
+                  "key": "forest land",
+                  "value": ""
+                },
+                {
+                  "key": "grazing land",
+                  "value": ""
+                },
+                {
+                  "key": "builtup land",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Dominican Republic",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 6537087,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 2821725.2
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 253119.25
+                },
+                {
+                  "key": "forest land",
+                  "value": 1694490.4
+                },
+                {
+                  "key": "grazing land",
+                  "value": 1157060.2
+                },
+                {
+                  "key": "builtup land",
+                  "value": 610692.1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "El Salvador",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 3775600.2,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1587667
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 710891.94
+                },
+                {
+                  "key": "forest land",
+                  "value": 250487.34
+                },
+                {
+                  "key": "grazing land",
+                  "value": 941624.1
+                },
+                {
+                  "key": "builtup land",
+                  "value": 284929.75
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Grenada",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 225934.14,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": ""
+                },
+                {
+                  "key": "fishing ground",
+                  "value": ""
+                },
+                {
+                  "key": "forest land",
+                  "value": ""
+                },
+                {
+                  "key": "grazing land",
+                  "value": ""
+                },
+                {
+                  "key": "builtup land",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Guadeloupe",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 209310.89,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 51328.242
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 83613.766
+                },
+                {
+                  "key": "forest land",
+                  "value": 61179.176
+                },
+                {
+                  "key": "grazing land",
+                  "value": 11939.37
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1250.3403
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Guatemala",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 1.7067184e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 7517043.5
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 714531.2
+                },
+                {
+                  "key": "forest land",
+                  "value": 4907595.5
+                },
+                {
+                  "key": "grazing land",
+                  "value": 2431724.8
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1496288.6
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Haiti",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 3514846.8,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 2575934.5
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 123950.516
+                },
+                {
+                  "key": "forest land",
+                  "value": 81066.62
+                },
+                {
+                  "key": "grazing land",
+                  "value": 334427
+                },
+                {
+                  "key": "builtup land",
+                  "value": 399468.28
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Honduras",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 1.3917378e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": ""
+                },
+                {
+                  "key": "fishing ground",
+                  "value": ""
+                },
+                {
+                  "key": "forest land",
+                  "value": ""
+                },
+                {
+                  "key": "grazing land",
+                  "value": ""
+                },
+                {
+                  "key": "builtup land",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "Amerique du Sud",
+      "children": [
+        {
+          "key": "Argentina",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 2.9978496e8,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1.2219544e8
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 6.9601984e7
+                },
+                {
+                  "key": "forest land",
+                  "value": 2.554137e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 7.7389728e7
+                },
+                {
+                  "key": "builtup land",
+                  "value": 5056434
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Bolivia",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 1.72294816e8,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 7435016.5
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 564421.4
+                },
+                {
+                  "key": "forest land",
+                  "value": 140400707
+                },
+                {
+                  "key": "grazing land",
+                  "value": 2.3159144e7
+                },
+                {
+                  "key": "builtup land",
+                  "value": 735535.06
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Brazil",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 1806629764,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 2.27468304e8
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 3.4265356e7
+                },
+                {
+                  "key": "forest land",
+                  "value": 1324674913
+                },
+                {
+                  "key": "grazing land",
+                  "value": 2.01395744e8
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1.882545e7
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Chile",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 6.35088e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 6285549
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 6757048.5
+                },
+                {
+                  "key": "forest land",
+                  "value": 4.042124e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 7933859.5
+                },
+                {
+                  "key": "builtup land",
+                  "value": 2111102.8
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Colombia",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 1.771804e8,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 1.3163102e7
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 3306716.2
+                },
+                {
+                  "key": "forest land",
+                  "value": 9.8289216e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 5.73724e7
+                },
+                {
+                  "key": "builtup land",
+                  "value": 5048968.5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Ecuador",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 3.2579432e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": ""
+                },
+                {
+                  "key": "fishing ground",
+                  "value": ""
+                },
+                {
+                  "key": "forest land",
+                  "value": ""
+                },
+                {
+                  "key": "grazing land",
+                  "value": ""
+                },
+                {
+                  "key": "builtup land",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "French Guiana",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 2.677462e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 25201.729
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 3957910.8
+                },
+                {
+                  "key": "forest land",
+                  "value": 2.2771378e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 18726.13
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1403.9163
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Guyana",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 5.229646e7,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 632584.3
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 4125675.8
+                },
+                {
+                  "key": "forest land",
+                  "value": 4.6268892e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 1215421
+                },
+                {
+                  "key": "builtup land",
+                  "value": 53884.742
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "Oceanie",
+      "children": [
+        {
+          "key": "Australia",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 296142004,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 5.0760832e7
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 7.4101632e7
+                },
+                {
+                  "key": "forest land",
+                  "value": 4.6149136e7
+                },
+                {
+                  "key": "grazing land",
+                  "value": 1.23708272e8
+                },
+                {
+                  "key": "builtup land",
+                  "value": 1422135.1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Solomon Islands",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 2425331.5,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 388536.62
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 665265
+                },
+                {
+                  "key": "forest land",
+                  "value": 1221099.9
+                },
+                {
+                  "key": "grazing land",
+                  "value": 3673.6523
+                },
+                {
+                  "key": "builtup land",
+                  "value": 146756.5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Cook Islands",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 24715.93,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": ""
+                },
+                {
+                  "key": "fishing ground",
+                  "value": ""
+                },
+                {
+                  "key": "forest land",
+                  "value": ""
+                },
+                {
+                  "key": "grazing land",
+                  "value": ""
+                },
+                {
+                  "key": "builtup land",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "Fiji",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 2112155,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": 266010.44
+                },
+                {
+                  "key": "fishing ground",
+                  "value": 579219.7
+                },
+                {
+                  "key": "forest land",
+                  "value": 1145303.5
+                },
+                {
+                  "key": "grazing land",
+                  "value": 80361.14
+                },
+                {
+                  "key": "builtup land",
+                  "value": 41260.133
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "French Polynesia",
+          "children": [
+            {
+              "key": "BiocapTotGHA",
+              "value": 382291.12,
+              "children": [
+                {
+                  "key": "crop land",
+                  "value": ""
+                },
+                {
+                  "key": "fishing ground",
+                  "value": ""
+                },
+                {
+                  "key": "forest land",
+                  "value": ""
+                },
+                {
+                  "key": "grazing land",
+                  "value": ""
+                },
+                {
+                  "key": "builtup land",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
