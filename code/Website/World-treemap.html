@@ -16,6 +16,14 @@
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
 
     <style>
+        div#tooltip {
+            background: #FFF;
+            pointer-events: none; // important
+        padding: 4px;
+            border: 1px solid #CCC;
+            border-radius: 3px;
+        }
+
         #chart {
             max-width: 100%;
             overflow: auto;
@@ -242,11 +250,24 @@
         height = 600 - margin.top - margin.bottom,
         formatNumber = d3.format(","),
         transitioning;
+
+    // Adding tooltip for info on hover
+    const tooltip = d3.select('body')
+        .append('div')
+        .attr('id', 'tooltip')
+        .attr('width', 60 + 'px')
+        .attr('height', 40 + 'px')
+        .style('z-index', 10)
+        .style('display', 'none')
+        .style('position', 'absolute');
+
     // sets x and y scale to determine size of visible boxes
     var x = d3.scaleLinear().domain([0, width]).range([0, width]);
     var y = d3.scaleLinear().domain([0, height]).range([0, height]);
     var treemap = d3.treemap().size([width, height]).paddingInner(0).round(false);
     const viz = document.getElementById("chart");
+    var color = d3.scale.category20c();
+
 
     function drawTreemap(loadeddata) {
         viz.innerHTML = '';
@@ -259,7 +280,9 @@
             .style("margin.right", -margin.right + "px")
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-            .style("shape-rendering", "crispEdges");
+            .style("shape-rendering", "crispEdges")
+
+
         var grandparent = svg.append("g").attr("class", "grandparent");
         grandparent
             .append("rect")
@@ -343,6 +366,9 @@
                         );
                     })
                     .attr("class", "textdiv"); //textdiv class allows us to style the text easily with CSS
+
+
+
                 function transition(d) {
                     if (transitioning || !d) return;
                     transitioning = true;
@@ -455,6 +481,15 @@
                         return i !== "";
                     })
                     .join(sep);
+            }
+
+            function formatTooltip(d) {
+                const name = d.data.key,
+                    value = d.data.value,
+                    tooltipText = `
+            <span>Name:</span> ${name} <br>
+            <span>Value:</span> ${value} <br>`;
+                return tooltipText;
             }
         });
     }
