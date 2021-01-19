@@ -1,0 +1,12 @@
+csvgrep -c record -r "EFConsTotGHA" dataen.csv > EFConsTotGHAall.csv
+
+csvgrep -c record -r "BiocapTotGHA" dataen.csv > BiocapTotGHAall.csv
+
+for i in {1961..2016}
+csvgrep -c year -r $i BiocapTotGHAall.csv > $i.csv
+
+for i in {1961..2016}
+csvgrep -c year -r $i EFConsTotGHAall.csv > $i.csv
+
+for i in {1961..2016}
+csvjson $i.csv > $i.json
