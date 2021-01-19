@@ -22,14 +22,6 @@
             fdisplay: flex;
         }
 
-        div#tooltip {
-            background: #FFF;
-            pointer-events: none; // important
-        padding: 4px;
-            border: 1px solid #CCC;
-            border-radius: 3px;
-        }
-
         #chart {
             max-width: 100%;
             max-height: 70%;
@@ -527,14 +519,7 @@
                     .join(sep);
             }
 
-            function formatTooltip(d) {
-                const name = d.data.key,
-                    value = d.data.value,
-                    tooltipText = `
-            <span>Name:</span> ${name} <br>
-            <span>Value:</span> ${value} <br>`;
-                return tooltipText;
-            }
+
         });
     }
 </script>
