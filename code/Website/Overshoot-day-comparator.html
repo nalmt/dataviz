@@ -68,6 +68,15 @@
               font-weight: bold;
           }
 
+          .left-div {
+              float: left;
+              margin-right: 8px;
+          }
+          .right-div {
+              margin-top: 35px;
+              margin-left: 400px;
+          }
+
       </style>
     
     
@@ -133,18 +142,20 @@
               <div class="u-container-style u-layout-cell u-size-38 u-layout-cell-2">
                 <div class="u-container-layout u-container-layout-2">
 
-                    <div id="selectContainer">
+                    <div class="left-div">
+                        <div id="selectContainer">
+                        </div>
+                    </div>
+                    <div class="right-div">
+                        <button id="addButton" type="button"  style="margin: 9px" onclick="addCountryToList()" class="u-btn u-btn-round u-button-style u-hover-palette-1-light-2 u-palette-1-light-3 u-radius-50 u-btn-1">Add to plot</button>
                     </div>
 
-                    <button id="addButton" type="button"  style="margin: 25px" onclick="addCountryToList()" class="u-btn u-btn-round u-button-style u-hover-palette-1-light-2 u-palette-1-light-3 u-radius-50 u-btn-1">Add to plot</button>
-                    <br> <br>
-                    <ul id="countryList"></ul>
-
-                  <div class="u-border-3 u-border-black u-container-style u-group u-white u-group-1" style="width: 1200px;height: 680px">
+                    <div class="u-border-3 u-border-black u-container-style u-group u-white u-group-1" style="width: 1200px;height: 500px">
                     <div class="u-container-layout u-container-layout-3" id="viz"></div>
                   </div>
                 </div>
               </div>
+                <ul id="countryList"></ul>
             </div>
           </div>
         </div>
@@ -186,14 +197,15 @@
       d3.select('#selectContainer').append('div').attr('id','selection');
       d3.select("#selection")
           .append('div')
-          .attr("class",'u-text u-text-palette-4-dark-3 u-text-2')
+          .attr("style",'font-size: 17px; font-weight: bold')
+
           .html("Select a Country : (will be added to the plot and to the legend below)");
 
       // Create the Select Input
       const countrySelect  = d3.select("#selection")
           .append("select")
           .attr('class','u-btn u-btn-round u-button-style u-hover-palette-1-light-2 u-palette-1-light-3 u-radius-50 u-btn-1')
-          .attr('style','margin: 25px')
+          .attr('style','margin: 10px')
           .attr('id','countrySelect')
           .on("change", changeCountry);
 
@@ -209,11 +221,11 @@
       // Scaling for xAxis and yAxis
       const xScale = d3.scaleLinear()
           .domain([first_year, last_year]) // input
-          .range([0, width]); // output
+          .range([0, 1000]); // output
 
       const yScale = d3.scaleLinear()
           .domain([0, max_input]) // input
-          .range([height, 0]); // output
+          .range([380, 0]); // output
 
 
       // Line generator
@@ -242,9 +254,9 @@
       // Plot Title
       svg.append("text")
           .attr("x", (width / 2))
-          .attr("y", 18 - (margin.top / 2))
+          .attr("y", 10 - (margin.top / 2))
           .attr("text-anchor", "middle")
-          .style("font-size", "30px")
+          .style("font-size", "20px")
           .style("text-decoration", "underline")
           .style("font-family", "sans-serif")
           .text("Past Overshoot Days per Country");
@@ -252,7 +264,7 @@
           .attr("x", (width / 2))
           .attr("y", 45 - (margin.top / 2))
           .attr("text-anchor", "middle")
-          .style("font-size", "15px")
+          .style("font-size", "10px")
           .style("text-decoration", "none")
           .style("font-family", "sans-serif")
           .text("(Biocapacity / Ecological Footprint) x 365");
@@ -261,7 +273,7 @@
       // xAxis and yAxis
       svg.append("g")
           .attr("class", ".xaxis")
-          .attr("transform", "translate(0," + height + ")")
+          .attr("transform", "translate(0," + 380 + ")")
           .style("font", "18px sans-serif")
           .style("font-weight","bold")
           .call(d3.axisBottom(xScale).tickFormat(d3.format("d")));
@@ -372,22 +384,30 @@
 
               // Add the country to the selected countries
               const ul = document.getElementById("countryList");
+              ul.setAttribute('style','list-style-type:none;');
 
               const li = document.createElement("li");
               li.setAttribute('id','selectedCountry_'+countryId);
 
               const but = document.createElement("button");
               but.setAttribute('type', 'button');
+              but.setAttribute('style','background: red');
 
 
               let string = 'removeCountry(selectedCountry_'+countryId+')';
 
               but.setAttribute('onclick', string);
-              but.innerHTML = "remove"
+              but.setAttribute('style', 'background-color: Transparent;\n' +
+                  '    background-repeat:no-repeat;\n' +
+                  '    border: none;\n' +
+                  '    cursor:pointer;\n' +
+                  '    overflow: hidden;\n' +
+                  '    outline:none;');
+              but.innerHTML = " <img src='images/trash.png' alt = 'infinix' width='20px' height='20px'>";
               li.appendChild(but);
 
 
-              li.appendChild(document.createTextNode(" | "+selectedCountry));
+              li.appendChild(document.createTextNode("  "+selectedCountry));
 
               ul.appendChild(li);
 
@@ -509,10 +529,10 @@
 
           // Appending a rectangle and label legend below the plot
           svg.append('rect')
-              .attr('width', 60)
+              .attr('width', 20)
               .attr('height', 20)
               .attr('x', (legendSpace/2) + legendOffset)
-              .attr('y', height + (margin.bottom/2)+ 5)
+              .attr('y', 400 + (margin.bottom/2)+ 5)
               .attr("class", "legend legend"+ind)
               .style('fill', color)
               .style('stroke', 'black')
@@ -523,8 +543,8 @@
               .style("stroke-opacity", 1)
               .style("fill-opacity", 1);
           svg.append("text")
-              .attr("x", 68 + (legendSpace/2) + legendOffset)
-              .attr("y", 15+height + (margin.bottom/2)+ 5)
+              .attr("x", 40 + (legendSpace/2) + legendOffset)
+              .attr("y", 15 + 400 + (margin.bottom/2)+ 5)
               .attr("class", "legendT legendT"+ind)
               .text(resize(countryName))
               .style("fill-opacity", 0)

@@ -63,14 +63,16 @@
 }
 
 .u-section-1 .u-group-1 {
-  min-height: 573px;
-  width: 746px;
+  min-height: 300px;
+  width: 300px;
   height: auto;
   margin: 95px -16px -30px;
 }
 
 .u-section-1 .u-container-layout-3 {
   padding: 30px;
+  max-width: 300px;
+  max-height: 300px;
 }
 
 @media (max-width: 1199px) {

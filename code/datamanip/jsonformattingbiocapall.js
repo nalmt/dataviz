@@ -9,11 +9,9 @@ for (let pas = 1961; pas < 2017; pas++) {
         var temp = r.find(o => o.key === key);
         if (!temp) r.push(temp = { key, children: [] });
         temp.children.push(
-            {"key" : object.GFN_name, "children":
-                    [
-                        {"key": object.record,
-                            "value":object.total,
-                            "children":
+            {"key" : object.GFN_name,
+                "value":object.total,
+                "children":
                                 [
                                     {"key": "crop land" , "value":object.crop_land},
                                     {"key": "fishing ground" , "value":object.fishing_ground},
@@ -21,8 +19,6 @@ for (let pas = 1961; pas < 2017; pas++) {
                                     {"key": "grazing land" , "value":object.grazing_land},
                                     {"key": "builtup land" , "value":object.built_up_land}
                                 ]
-                        }
-                    ]
             });
         return r;
     }, []);
